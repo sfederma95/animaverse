@@ -54,21 +54,21 @@ router.put('/:id/:pet_id/play', ensureDevAuth,authenticateJWT, ensureCorrectUser
     }
 })
 
-router.put('/:id/:pet_id/boredom', ensureDevAuth,authenticateJWT, ensureCorrectUser, async function(req,res,next){
+router.put('/:id/:pet_id/boredom', ensureDevAuth, async function(req,res,next){
     try {
         req.body.stat = 'happiness'
-        const pet = await Pet.petDecline(req.body,req.params.pet_id)
-        return res.json({pet})
+        await Pet.petDecline(req.body,req.params.pet_id)
+        return res.json({msg:"Happiness declined"})
     } catch(err){
         return next(err)
     }
 })
 
-router.put('/:id/:pet_id/starve', ensureDevAuth, authenticateJWT, ensureCorrectUser, async function(req,res,next){
+router.put('/:id/:pet_id/starve', ensureDevAuth, async function(req,res,next){
     try {
         req.body.stat = 'hunger'
-        const pet = await Pet.petDecline(req.body,req.params.pet_id)
-        return res.json({pet})
+        await Pet.petDecline(req.body,req.params.pet_id)
+        return res.json({msg:"Hunger increased"})
     } catch(err){
         return next(err)
     }

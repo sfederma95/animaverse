@@ -89,9 +89,8 @@ class Pet {
         }
         let newPetInfo = await db.query(`UPDATE pets SET ${stat}=$1 WHERE id=$2 RETURNING *`,[declineAmt, pet_id])
         let returnPet = newPetInfo.rows[0]
-        let newStatus = await this.petStatusUpdate(returnPet)
-        returnPet.pet_status = newStatus
-        return {returnPet}
+        await this.petStatusUpdate(returnPet)
+        return true;
     }
 
     static async addExp({amt},pet_id){

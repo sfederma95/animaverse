@@ -39,6 +39,7 @@ class User {
         const res = await db.query(
             `SELECT id,pet_name,hunger,happiness,pet_lvl,pet_img,pet_status FROM pets WHERE pets.usr_id = $1`,[usr_id]
         )
+        if(res.rows[0]===undefined) throw new ExpressError('That user does not have any pets', 404)
         return res.rows;
     }
 
@@ -100,6 +101,19 @@ class User {
             await db.query(`UPDATE users SET gold_amt=$1 WHERE usr_id=$2`,[newGoldAmt,usr_id])
             return {usr_id, gold_amt:newGoldAmt}
         }
+    }
+
+    static async update({email,avatar},usr_id){
+        const res = await db.query(
+            `SELECT usr_id, username, usr_avt, email FROM users WHERE usr_id=$1`,
+            [usr_id]
+        );
+        const user = res.rows[0];
+        if(!user) throw new ExpressError('Could not find that user', 404)
+        let new_email = email || user.email;
+        let new_avt = avatar || user.usr_avt;
+        const updatedUser = await db.query(`UPDATE users SET email=$1,usr_avt=$2 WHERE usr_id=$3 RETURNING usr_id, username, usr_avt, email`,[new_email, new_avt,usr_id])
+        return updatedUser.rows[0];
     }
 }
 

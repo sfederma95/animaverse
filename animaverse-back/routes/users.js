@@ -3,6 +3,7 @@ const User = require('../models/user');
 const jsonschema = require('jsonschema')
 const newUserSchema = require('../schema/newUser.json')
 const userLoginSchema = require('../schema/userLogin.json');
+const userUpdateSchema = require('../schema/updateUser.json');
 const ExpressError = require('../expressError');
 const {createToken} = require('../helpers/token')
 const {ensureCorrectUser,authenticateJWT} = require('../helpers/auth')
@@ -53,6 +54,20 @@ router.get('/', authenticateJWT, async function(req,res,next){
     try {
         const users = await User.getAll()
         return res.json({users})
+    } catch(err){
+        return next(err)
+    }
+})
+
+router.patch('/:id', authenticateJWT, ensureCorrectUser, async function(req,res,next){
+    try {
+        const validator = jsonschema.validate(req.body,userUpdateSchema)
+        if(!validator.valid){
+            const errs = validator.errors.map(e=>e.stack);
+            throw new ExpressError(errs)
+        }
+        const user = await User.update(req.body, req.params.id)
+        return res.json({user})
     } catch(err){
         return next(err)
     }

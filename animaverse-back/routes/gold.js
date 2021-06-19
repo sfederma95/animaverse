@@ -1,8 +1,9 @@
 const express = require('express');
 const User = require('../models/user');
+const {ensureCorrectUser,authenticateJWT, ensureDevAuth} = require('../helpers/auth')
 const router = express.Router();
 
-router.put('/add', async function(req,res,next){
+router.put('/add', ensureDevAuth, authenticateJWT, ensureCorrectUser,async function(req,res,next){
     try{
         const goldUpdate = await User.addGold(req.body.usr_id,req.body.goldToAdd)
         return res.status(201).json({goldUpdate})
@@ -11,7 +12,7 @@ router.put('/add', async function(req,res,next){
     }
 })
 
-router.put('/dec', async function(req,res,next){
+router.put('/dec', ensureDevAuth, authenticateJWT, ensureCorrectUser, async function(req,res,next){
     try{
         const goldUpdate = await User.decGold(req.body.usr_id,req.body.goldToDec)
         return res.status(201).json({goldUpdate})
