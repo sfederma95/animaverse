@@ -34,41 +34,21 @@ router.put('/:id/:pet_id/exp', ensureDevAuth,authenticateJWT, ensureCorrectUser,
     }
 })
 
-router.put('/:id/:pet_id/feed', ensureDevAuth,authenticateJWT, ensureCorrectUser, async function(req,res,next){
+router.put('/:id/:pet_id/feed', authenticateJWT, ensureCorrectUser, async function(req,res,next){
     try {
-        req.body.action = 'hunger'
-        const pet = await Pet.petInteract(req.body,req.params.pet_id)
+        const action = 'hunger'
+        const pet = await Pet.petInteract(req.body,req.params.pet_id, req.params.id, action)
         return res.json({pet})
     } catch(err){
         return next(err)
     }
 })
 
-router.put('/:id/:pet_id/play', ensureDevAuth,authenticateJWT, ensureCorrectUser, async function(req,res,next){
+router.put('/:id/:pet_id/play', authenticateJWT, ensureCorrectUser, async function(req,res,next){
     try {
-        req.body.action = 'happiness'
-        const pet = await Pet.petInteract(req.body,req.params.pet_id)
+        const action = 'happiness'
+        const pet = await Pet.petInteract(req.body,req.params.pet_id, req.params.id, action)
         return res.json({pet})
-    } catch(err){
-        return next(err)
-    }
-})
-
-router.put('/:id/:pet_id/boredom', ensureDevAuth, async function(req,res,next){
-    try {
-        req.body.stat = 'happiness'
-        await Pet.petDecline(req.body,req.params.pet_id)
-        return res.json({msg:"Happiness declined"})
-    } catch(err){
-        return next(err)
-    }
-})
-
-router.put('/:id/:pet_id/starve', ensureDevAuth, async function(req,res,next){
-    try {
-        req.body.stat = 'hunger'
-        await Pet.petDecline(req.body,req.params.pet_id)
-        return res.json({msg:"Hunger increased"})
     } catch(err){
         return next(err)
     }

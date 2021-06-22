@@ -32,7 +32,7 @@ const ensureDevAuth = (req,res,next)=>{
     try {
         const devAuth = req.body.devKey;
         if (devAuth !== DEV_APPROVAL_KEY){
-            throw new ExpressError("Only the developer can use this API route")
+            throw new ExpressError("This request is not approved by the developer")
         }
         return next();
     } catch(err){
@@ -40,8 +40,9 @@ const ensureDevAuth = (req,res,next)=>{
     }
 }
 
+
 module.exports = {
     authenticateJWT,
     ensureCorrectUser,
-    ensureDevAuth
+    ensureDevAuth,
 }

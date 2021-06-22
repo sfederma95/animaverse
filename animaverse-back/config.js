@@ -13,5 +13,5 @@ module.exports = {
     PORT,
     BCRYPT_WORK_FACTOR,
     getDatabaseUri,
-    DEV_APPROVAL_KEY
+    DEV_APPROVAL_KEY,
 }

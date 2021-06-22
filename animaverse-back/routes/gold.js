@@ -12,7 +12,7 @@ router.put('/add', ensureDevAuth, authenticateJWT, ensureCorrectUser,async funct
     }
 })
 
-router.put('/dec', ensureDevAuth, authenticateJWT, ensureCorrectUser, async function(req,res,next){
+router.put('/dec', authenticateJWT, ensureCorrectUser, async function(req,res,next){
     try{
         const goldUpdate = await User.decGold(req.body.usr_id,req.body.goldToDec)
         return res.status(201).json({goldUpdate})

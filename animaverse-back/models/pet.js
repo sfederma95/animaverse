@@ -51,13 +51,19 @@ class Pet {
         return pet;
     }
 
-    static async petInteract({action,amt},pet_id){
+    static async petInteract({amt,item_id},pet_id, id, action){
         const res = await db.query(
             `SELECT * FROM pets WHERE id=$1`,
             [pet_id]
         );
         const pet = res.rows[0];
         if(!pet) throw new ExpressError('Could not find that pet',404)
+        const res2 = await db.query(
+            `SELECT * FROM inventories WHERE usr_id=$1 AND item_id=$2`,
+            [id,item_id]
+        );
+        const validItem = res2.rows[0];
+        if(validItem===undefined) throw new ExpressError('That item does not exist in your inventory',500)
         let updateAmt; 
         let updateTime;
         if (action === 'hunger'){
@@ -74,7 +80,7 @@ class Pet {
         return {returnPet}
     }
 
-    static async petDecline({stat,amt},pet_id){
+    static async petDecline(amt, pet_id, stat){
         const res = await db.query(
             `SELECT * FROM pets WHERE id=$1`,
             [pet_id]
