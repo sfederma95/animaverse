@@ -10,13 +10,14 @@ import jwt from 'jsonwebtoken'
 function App() {
   const [currentUser,setCurrentUser]=useState(null);
   const [token,setToken] = useLocalStorage('user-token')
-  useEffect(function loadUserInfo(){
+  function loadUserInfo(){
     async function getCurrentUser(){
       if(token) {
         try {
-          let {usr_id} = jwt.decode(token);
+          let {id} = jwt.decode(token);
           AnimalsApi.token = token;
-          let currentUser = await AnimalsApi.getUser(usr_id);
+          let currentUser = await AnimalsApi.getUser(id);
+          console.log(currentUser)
           setCurrentUser(currentUser);
         } catch(err){
           setCurrentUser(null)
@@ -24,15 +25,16 @@ function App() {
       }
     }
     getCurrentUser();
-  },[token])
+  }
+  useEffect(loadUserInfo,[token])
   async function register(data){
     try{
       let user = await AnimalsApi.register(data);
       let token = user.token
       setToken(token)
-      return true;
-    } catch(errors){
-      return {register: false, errors}
+      return {register:true, user};
+    } catch(msg){
+      return {register: false, errors:[msg]}
     }
   }
   async function login(data){
@@ -40,9 +42,10 @@ function App() {
       let user = await AnimalsApi.login(data);
       let token = user.token;
       setToken(token);
-      return true;
-    } catch(errors) {
-      return {login:false, errors}
+      setCurrentUser(user)
+      return {login:true, user};
+    } catch(msg) {
+      return {login:false, errors:[msg]}
     }
   }
   function logout(){
@@ -55,7 +58,7 @@ function App() {
       <UserContext.Provider value={{currentUser,setCurrentUser}}>
         <div>
           <Navbar logout={logout}/>
-          <Routes login={login} register={register}/>
+          <Routes login={login} register={register} />
         </div>
       </UserContext.Provider>
     </BrowserRouter>

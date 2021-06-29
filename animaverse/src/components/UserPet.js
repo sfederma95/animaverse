@@ -1,10 +1,11 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 
-function UserPet({src,name,type,level, happiness, hunger, exp, status, last_fed, last_play}){
+function UserPet({userId, src,name,type,level, happiness, hunger, exp, status, last_fed, last_play, petId}){
     return(
         <div>
             <img alt={type} height="200px" width="200px" src={src}/>
-            <p>Type: {type}</p>
+            {type ? <p>Type: {type}</p> : null}
             <p>Name: {name}</p>
             <p>Level: {level}</p>
             <p>Level Exp: {exp}</p>
@@ -13,8 +14,8 @@ function UserPet({src,name,type,level, happiness, hunger, exp, status, last_fed,
             <p>Status: {status}</p>
             <p>Last Fed: {last_fed}</p>
             <p>Last Played: {last_play}</p>
-            <button>Play</button>
-            <button>Feed</button>
+            <button><Link to={`/${userId}/${petId}/feed`}>Feed</Link></button>
+            <button><Link to={`/${userId}/${petId}/play`}>Play</Link></button>
         </div>
     )
 }

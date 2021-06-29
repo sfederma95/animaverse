@@ -1,16 +1,20 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Item from './Item';
+import items from '../items/items'
+import UserContext from '../users/UserContext'
+import { v4 as uuidv4 } from 'uuid';
 
 function Inventory(){
+    const {currentUser} = useContext(UserContext)
+    const inventoryItems = currentUser.inventory.map(i=>{
+        let currItem = items[i.item_id-1]
+        return <Item key={uuidv4()} src={currItem.img} name={currItem.name} description={currItem.description} id={currItem.id} action={currItem.action} amount={currItem.amount} />
+    })
     return(
         <div>
-            <h1>Username's inventory</h1>
-            <p>Select an item you'd like to use on Ratty.</p>
-            <p>Using an item will remove it from your inventory.</p>
-            <div>
-                <Item id={1} src='something.png' action='Feed' amount={10} name="Candy" description="A little sweet, but who doesn't like candy?" />
-                <Item id={2} src='something.png' action='Play' amount={10} name="Ball" description="Time for a little game of fetch!" />
-            </div>
+            <h1>{currentUser.username}'s inventory</h1>
+            <p>Check out the items in your inventory</p>
+            {inventoryItems}
         </div>
     )
 }

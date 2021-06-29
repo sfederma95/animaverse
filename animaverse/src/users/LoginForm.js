@@ -2,18 +2,16 @@ import React, {useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import Alert from '../Alert'
 
-function NewUserForm({register}){
+function LoginForm({login}){
     const history = useHistory();
     const [formData,setFormData]=useState({
         username: "",
-        password: "",
-        email: "",
-        avatar: "",
+        password: ""
     })
     const [formErrors,setFormErrors] = useState([])
     async function handleSubmit(e){
         e.preventDefault();
-        let res = await register(formData);
+        let res = await login(formData);
         if (res.errors) {
             setFormErrors(res.errors)
         } else{
@@ -26,7 +24,7 @@ function NewUserForm({register}){
     }
     return(
         <div>
-            <h1>Sign up and get your first pet!</h1>
+            <h1>Login below</h1>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor='username'>Username</label>
@@ -36,19 +34,11 @@ function NewUserForm({register}){
                     <label htmlFor='password'>Password</label>
                     <input id='password' name='password' value={formData.password} onChange={handleChange} type='text' required/>
                 </div>
-                <div>
-                    <label htmlFor='email'>Email</label>
-                    <input id='email' name='email' value={formData.email} onChange={handleChange} type='text' required/>
-                </div>
-                <div>
-                    <label htmlFor='avatar'>Avatar URL</label>
-                    <input id='avatar' name='avatar' value={formData.avatar} onChange={handleChange} type='text'/>
-                </div>
                 {formErrors.length ? <Alert messages={formErrors}/> : null}
-                <button>Register</button>
+                <button >Login</button>
             </form>
         </div>
     )
 }
 
-export default NewUserForm;
+export default LoginForm;

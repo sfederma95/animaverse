@@ -1,12 +1,12 @@
 import React from 'react';
 
-function Pet({src,type,level}){
+function Pet({src,type,level, buttonFn}){
     return(
         <div>
             <img alt={type} src={src}/>
             <p>Type: {type}</p>
             <p>Level: {level}</p>
-            <button>Select</button>
+            <button onClick={buttonFn}>Select</button>
         </div>
     )
 }

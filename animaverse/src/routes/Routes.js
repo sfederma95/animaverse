@@ -7,8 +7,12 @@ import Shop from '../components/Shop'
 import Inventory from '../components/Inventory'
 import NewUserForm from '../users/NewUserForm'
 import UpdateUserForm from '../users/UpdateUserForm'
+import Private from './Private'
+import LoginForm from '../users/LoginForm'
+import Game from '../components/Game'
+import InteractWindow from '../components/InteractWindow'
 
-function Routes(){
+function Routes({login, register}){
     return(
         <div>
             <Switch>
@@ -16,23 +20,35 @@ function Routes(){
                     <Homepage />
                 </Route>
                 <Route exact path='/register'>
-                    <NewUserForm />
+                    <NewUserForm register={register} />
                 </Route>
-                <Route exact path='/:id/update'>
+                <Route exact path='/login'>
+                    <LoginForm login={login} />
+                </Route>
+                <Private exact path='/:id/game'>
+                    <Game />
+                </Private>
+                <Private exact path='/:id/:pet_id/feed'>
+                    <InteractWindow action="Feed" />
+                </Private>
+                <Private exact path='/:id/:pet_id/play'>
+                    <InteractWindow action='Play' />
+                </Private>
+                <Private exact path='/:id/update'>
                     <UpdateUserForm />
-                </Route>
-                <Route exact path='/:id/adopt'>
+                </Private>
+                <Private exact path='/:id/adopt'>
                     <AdoptPage />
-                </Route>
-                <Route exact path='/users/:id'>
-                    <UserPage avatar='https://cdn4.iconfinder.com/data/icons/user-interface-glyph-5/32/User-512.png'/>
-                </Route>
-                <Route exact path='/:id/shop'>
+                </Private>
+                <Private exact path='/users/:id'>
+                    <UserPage  />
+                </Private>
+                <Private exact path='/:id/shop'>
                     <Shop />
-                </Route>
-                <Route exact path='/:id/inventory'>
+                </Private>
+                <Private exact path='/:id/inventory'>
                     <Inventory />
-                </Route>
+                </Private>
                 <Redirect to='/' />
             </Switch>
         </div>

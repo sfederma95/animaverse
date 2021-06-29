@@ -37,9 +37,8 @@ class User {
 
     static async getPets(usr_id) {
         const res = await db.query(
-            `SELECT id,pet_name,hunger,happiness,pet_lvl,pet_img,pet_status FROM pets WHERE pets.usr_id = $1`,[usr_id]
+            `SELECT id,pet_name,hunger,happiness,pet_lvl,pet_img,pet_status,lvl_exp, last_fed, last_play FROM pets WHERE pets.usr_id = $1`,[usr_id]
         )
-        if(res.rows[0]===undefined) throw new ExpressError('That user does not have any pets', 404)
         return res.rows;
     }
 
