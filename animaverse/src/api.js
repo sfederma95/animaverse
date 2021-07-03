@@ -33,13 +33,16 @@ class AnimalsApi {
         }
     }
     static async addGold(usr_id, gold){
-        try{
-            let res = await axios.put(`${BASE_URL}/gold/add`,{usr_id:usr_id, goldToAdd: gold, devKey: DEV_APPROVAL_KEY})
-            return res.data.gold_amt;
-        } catch(err){
-            let msg = err.response.data.error.message;
-            throw Array.isArray(msg) ? msg : [msg]
+        let data = {usr_id:usr_id, goldToAdd: gold, devKey: DEV_APPROVAL_KEY}
+        let res = await axios.put(`${BASE_URL}/gold/add`,data,{
+            headers: {
+                Authorization: `Bearer ${AnimalsApi.token}`
+            }
+        })
+        if (res.data.error){
+            throw res.data.error.msg
         }
+        return res.data.updatedUser;
     }
     static async newPet(data,usr_id){
         let res = await axios.post(`${BASE_URL}/pets/new/${usr_id}`,data,{
@@ -104,6 +107,20 @@ class AnimalsApi {
         }
         return res.data.newInv;
     }
+
+    static async addExp(data, pet_id, usr_id){
+        data.devKey = DEV_APPROVAL_KEY;
+        let res = await axios.put(`${BASE_URL}/pets/${usr_id}/${pet_id}/exp`,data,{
+            headers: {
+                Authorization: `Bearer ${AnimalsApi.token}`
+            }
+        })
+        if (res.data.error){
+            throw res.data.error.msg
+        }
+        return res.data.pet;
+    }
+
 }
 
 

@@ -34,15 +34,16 @@ class Pet {
             throw new ExpressError('There is already a pet with that name',500)
         }
         const happiness = 50;
+        const hunger = 50;
         const pet_status = 'Happy';
         const last_fed = null;
         const last_play = null;
         const res = await db.query(
             `INSERT INTO pets
-            (pet_name,happiness,pet_img,pet_status,last_fed,last_play,usr_id)
-            VALUES ($1, $2, $3, $4, $5, $6, $7)
+            (pet_name,hunger,happiness,pet_img,pet_status,last_fed,last_play,usr_id)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
             RETURNING *`,[
-                pet_name, happiness, pet_img, pet_status, last_fed, last_play, usr_id
+                pet_name, hunger, happiness, pet_img, pet_status, last_fed, last_play, usr_id
             ]
         )
         const pet = res.rows[0];

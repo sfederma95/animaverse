@@ -36,6 +36,12 @@ class User {
     }
 
     static async getPets(usr_id) {
+        const userSearch = await db.query(
+            `SELECT usr_id, username, gold_amt, usr_avt, last_login FROM users WHERE usr_id=$1`,
+            [usr_id]
+        );
+        const user = userSearch.rows[0];
+        if(!user) throw new ExpressError('Could not find that user', 404)
         const res = await db.query(
             `SELECT id,pet_name,hunger,happiness,pet_lvl,pet_img,pet_status,lvl_exp, last_fed, last_play FROM pets WHERE pets.usr_id = $1`,[usr_id]
         )
@@ -82,8 +88,11 @@ class User {
         const user = res.rows[0];
         if(!user) throw new ExpressError('Could not find that user',404)
         let newGoldAmt = goldToAdd + user.gold_amt
-        await db.query(`UPDATE users SET gold_amt=$1 WHERE usr_id=$2`,[newGoldAmt,usr_id])
-        return {usr_id, gold_amt:newGoldAmt}
+        let res2 = await db.query(`UPDATE users SET gold_amt=$1 WHERE usr_id=$2 RETURNING usr_id, username, gold_amt, usr_avt, last_login`,[newGoldAmt,usr_id])
+        let updatedUser = res2.rows[0]
+        updatedUser.pets = await this.getPets(updatedUser.usr_id);
+        updatedUser.inventory = await Inventory.getInventory(updatedUser.usr_id)
+        return {updatedUser}
     }
 
     static async decGold(usr_id, goldToDec){
@@ -97,8 +106,11 @@ class User {
             throw new ExpressError("Looks like you're out of gold! Oh no!",500)
         } else {
             let newGoldAmt = user.gold_amt - goldToDec;
-            await db.query(`UPDATE users SET gold_amt=$1 WHERE usr_id=$2`,[newGoldAmt,usr_id])
-            return {usr_id, gold_amt:newGoldAmt}
+            let res2 = await db.query(`UPDATE users SET gold_amt=$1 WHERE usr_id=$2 RETURNING usr_id, username, gold_amt, usr_avt, last_login`,[newGoldAmt,usr_id])
+            let updatedUser = res2.rows[0]
+            updatedUser.pets = await this.getPets(updatedUser.usr_id);
+            updatedUser.inventory = await Inventory.getInventory(updatedUser.usr_id)
+            return {updatedUser}
         }
     }
 

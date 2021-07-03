@@ -17,10 +17,9 @@ app.use('/gold',goldRoutes)
 app.use('/inventories',inventoryRoutes)
 
 app.use(function(err,req,res,next){
-    console.error(err.stack)
     const msg = err.msg
     const status = err.status
-    return res.status(500).json({
+    return res.status(status).json({
         error: {msg,status}
     })
 })

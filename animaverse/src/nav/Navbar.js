@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {NavLink, Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import UserContext from '../users/UserContext';
 
 function Navbar({logout}){
@@ -23,9 +23,14 @@ function Navbar({logout}){
                     </NavLink>
                 </li>
                 <li>
-                    <Link to='/' onClick={logout}>
+                    <NavLink to={`/${currentUser.usr_id}/game`}>
+                        Play Game
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink to='/' onClick={logout}>
                         Logout
-                    </Link>
+                    </NavLink>
                 </li>
             </ul>
         )
@@ -50,9 +55,9 @@ function Navbar({logout}){
 
     return(
         <nav>
-            <Link to='/'>
+            <NavLink to='/'>
                 Home
-            </Link>
+            </NavLink>
             {currentUser ? loggedIn() : loggedOut()}
         </nav>
     )

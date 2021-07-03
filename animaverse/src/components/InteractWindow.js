@@ -29,6 +29,7 @@ function InteractWindow({action}){
                 await AnimalsApi.playPet({ item_id: itemId, amt: items[itemId-1].amount }, currentUser.usr_id, pet_id);
             }
             await AnimalsApi.removeItem({ usr_id: currentUser.usr_id, item_id: itemId })
+            await AnimalsApi.addExp({amt:10},currPet.id, currentUser.usr_id)
             alert(msg);
             history.push(`/users/${currentUser.usr_id}`);
         } catch (e) {

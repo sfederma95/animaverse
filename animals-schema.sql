@@ -1,4 +1,4 @@
-\c animaverse;
+\c anima-backend-test;
 
 CREATE TABLE users (
     usr_id SERIAL PRIMARY KEY,
@@ -29,10 +29,3 @@ CREATE TABLE inventories (
     usr_id INTEGER NOT NULL REFERENCES users ON DELETE CASCADE
 );
 
-CREATE TABLE gifts (
-    item_id INTEGER NOT NULL,
-    from_usr_id INTEGER NOT NULL REFERENCES users ON DELETE CASCADE
-    to_usr_id INTEGER NOT NULL REFERENCES users ON DELETE CASCADE
-    opened BOOLEAN NOT NULL
-    note TEXT
-);

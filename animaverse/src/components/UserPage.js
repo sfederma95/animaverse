@@ -39,8 +39,9 @@ function UserPage(){
         <div>
             <img alt="usr-avatar" src={currentUser.usr_avt} height="200px" width="200px"/>
             <h1>Welcome, {currentUser.username}!</h1>
+            <p>Your gold: {currentUser.gold_amt}</p>
             <button>Update Account</button>
-            {currentUser.pets.length === 0 ? letsAdopt : <p>Let's see how your pets are doing!</p>}
+            {letsAdopt}
             {userPets}
         </div>
     )

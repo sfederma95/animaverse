@@ -5,8 +5,8 @@ const router = express.Router();
 
 router.put('/add', ensureDevAuth, authenticateJWT, ensureCorrectUser,async function(req,res,next){
     try{
-        const goldUpdate = await User.addGold(req.body.usr_id,req.body.goldToAdd)
-        return res.status(201).json({goldUpdate})
+        const updatedUser = await User.addGold(req.body.usr_id,req.body.goldToAdd)
+        return res.status(201).json({updatedUser})
     } catch(err){
         return next(err)
     }
