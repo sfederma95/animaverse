@@ -1,12 +1,20 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {NavLink} from 'react-router-dom';
 import UserContext from '../users/UserContext';
+import './nav.css'
+import homeBtn from './home-btn.svg'
+import disappear from './nav'
 
 function Navbar({logout}){
     const {currentUser} = useContext(UserContext)
     function loggedIn(){
         return(
             <ul>
+                <li>
+                <NavLink to='/'>
+                Home
+            </NavLink>
+                </li>
                 <li>
                     <NavLink to={`/users/${currentUser.usr_id}`}>
                         Profile
@@ -35,10 +43,12 @@ function Navbar({logout}){
             </ul>
         )
     }
-    
     function loggedOut(){
         return(
             <ul>
+                <li>  <NavLink to='/'>
+                Home
+            </NavLink></li>
                 <li>
                     <NavLink to='/login'>
                         Login
@@ -50,15 +60,14 @@ function Navbar({logout}){
                     </NavLink>
                 </li>
             </ul>
+            
         )
     }
 
     return(
-        <nav>
-            <NavLink to='/'>
-                Home
-            </NavLink>
-            {currentUser ? loggedIn() : loggedOut()}
+        <nav id='navbar'>
+            {/* {currentUser ? loggedIn() : loggedOut()} */}
+            <img onClick={disappear} alt='home button' id='home-btn' src={homeBtn}/>
         </nav>
     )
 }

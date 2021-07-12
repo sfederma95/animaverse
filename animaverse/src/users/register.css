@@ -1,0 +1,105 @@
+#reg-form {
+    position: relative;
+    width: 50vw;
+    left: 25vw;
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+#tagline {
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.5em;
+    margin: 3em 0 2em 0;
+}
+
+#reg-btn{
+    text-decoration: none;
+    border: 2px solid black;
+    padding: 0.5em;
+    color: black;
+    background-color: rgba(196, 240, 196, 0.9);
+    border-radius: 10%;
+    font-family: 'Courier New', Courier, monospace;
+    margin: 1em 0 0 0;
+    height: 3em;
+    width: 6em;
+    text-align: center;
+    font-weight: bold;
+}
+
+#reg-btn:hover {
+    cursor: grab;
+    animation-name: bounce;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+}
+
+@keyframes bounce {
+	0%, 100%, 20%, 50%, 80% {
+		-webkit-transform: translateY(0);
+		-ms-transform:     translateY(0);
+		transform:         translateY(0)
+	}
+	40% {
+		-webkit-transform: translateY(-1em);
+		-ms-transform:     translateY(-1em);
+		transform:         translateY(-1em)
+	}
+	60% {
+		-webkit-transform: translateY(-0.5em);
+		-ms-transform:     translateY(-0.5em);
+		transform:         translateY(-0.5em)
+	}
+}
+
+.inputs {
+    margin: 3em 0 2em 2em;
+    width: 100%;
+    text-align: start;
+    display: flex;
+    align-items: center;
+}
+
+#form-el {
+    position: relative;
+    border: 5px solid rgba(0, 0, 0, 0.356);
+    width: 40vw;
+    left: calc(50% - 20vw);
+    padding: 0 0 2em 0;
+    font-family: 'Courier New', Courier, monospace;
+    border-bottom: 15px solid rgba(0, 0, 0, 0.356);
+
+}
+
+#register-p{
+    border-bottom: 5px solid rgba(0, 0, 0, 0.356);
+    padding: 0 0 1em 0;
+    font-weight: bold;
+}
+
+.input-el{
+    height: 2em;
+    margin-right: 4em;
+    width: 35em;
+}
+
+.labels {
+    width: 10em;
+    margin: 1em;
+    font-weight: bold;
+}
+
+.sleep-cat {
+    position: absolute;
+    height: 5em;
+    width: 15em;
+    left: 70%;
+    margin-bottom: 2em;
+}

@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import Alert from '../Alert'
+import './login.css';
 
 function LoginForm({login}){
     const history = useHistory();
@@ -23,19 +24,20 @@ function LoginForm({login}){
         setFormData(l=>({...l,[name]:value}))
     }
     return(
-        <div>
-            <h1>Login below</h1>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor='username'>Username</label>
-                    <input id='username' name='username' value={formData.username} onChange={handleChange} type='text' required/>
+        <div id='login-form'>
+            <h1 id='tagline'>Login below</h1>
+            <form id='form-el' onSubmit={handleSubmit}>
+                <p id='login-p'>Login:</p>
+                <div className='inputs'>
+                    <label className = 'labels' htmlFor='username'>Username</label>
+                    <input className='input-el' id='username' name='username' value={formData.username} onChange={handleChange} type='text' required/>
                 </div>
-                <div>
-                    <label htmlFor='password'>Password</label>
-                    <input id='password' name='password' value={formData.password} onChange={handleChange} type='text' required/>
+                <div className='inputs'>
+                    <label className = 'labels' htmlFor='password'>Password</label>
+                    <input className='input-el' id='password' name='password' value={formData.password} onChange={handleChange} type='text' required/>
                 </div>
                 {formErrors.length ? <Alert messages={formErrors}/> : null}
-                <button >Login</button>
+                <button id='login-btn'>Login</button>
             </form>
         </div>
     )

@@ -1,0 +1,45 @@
+#navbar {
+    width: 100vw;
+    background-color: rgba(132, 226, 132,0.9);
+    height: 7vh;
+    position:relative;
+}
+
+#home-btn {
+    height: 4.5rem;
+    width: 4.5rem;
+    position: absolute;
+    left: calc(50vw - 4.5rem/2);
+    margin-top: 1em;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+}
+
+#home-btn:hover {
+    cursor: grab;
+    animation-name: bounce;
+}
+
+@keyframes bounce {
+	0%, 100%, 20%, 50%, 80% {
+		-webkit-transform: translateY(0);
+		-ms-transform:     translateY(0);
+		transform:         translateY(0)
+	}
+	40% {
+		-webkit-transform: translateY(-1em);
+		-ms-transform:     translateY(-1em);
+		transform:         translateY(-1em)
+	}
+	60% {
+		-webkit-transform: translateY(-0.5em);
+		-ms-transform:     translateY(-0.5em);
+		transform:         translateY(-0.5em)
+	}
+}

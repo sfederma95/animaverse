@@ -32,6 +32,7 @@ function App() {
       let user = await AnimalsApi.register(data);
       let token = user.token
       setToken(token)
+      setCurrentUser(user)
       return {register:true, user};
     } catch(msg){
       return {register: false, errors:[msg]}

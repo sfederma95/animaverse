@@ -58,8 +58,8 @@ router.post('/new/:id', authenticateJWT, ensureCorrectUser,async function(req,re
     try {
         const validator = jsonschema.validate(req.body,newPetSchema)
         if(!validator.valid){
-            const errs = validator.errors.map(e=>e.stack);
-            throw new ExpressError(errs)
+            const errs = validator.errors.map(e=>`${e.path[0]} ${e.message}`);
+            throw new ExpressError(errs,500)
         }
         const pet = await Pet.create(req.body,req.params.id)
         return res.status(201).json({pet})

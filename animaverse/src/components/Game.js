@@ -44,6 +44,14 @@ function Game(){
         loadGame();
     },[])
     async function checkWin(e){
+        const p2cards = document.getElementsByClassName("p2c");
+        for (let i =0; i<p2cards.length; i++){
+            p2cards[i].classList.toggle('player-2')
+        }
+        const gmBtns = document.getElementsByClassName("uselect-btn");
+        for (let i =0; i<gmBtns.length; i++){
+            gmBtns[i].style.display = "none"
+        }
         let player1Total = cardArr1.reduce((acc,val) => (+acc.value)+(+val.value) )
         let player2Total = cardArr2.reduce((acc,val) => (+acc.value)+(+val.value) )
         if (e.target.innerHTML==="More") {
@@ -72,10 +80,6 @@ function Game(){
                 setCurrentUser(res.updatedUser)
             }
         } 
-        // let p2cards = document.getElementsByClassName("player-2");
-        // for (let i=0; i< p2cards.length; i++){
-        //    p2cards[i].classList.remove('player-2')
-        // }
     }
     async function newGame(){
         setGame(null)
@@ -88,7 +92,7 @@ function Game(){
             return <Card className='player-1' key={uuidv4()} image={c.image} code={c.code} />
         })
         let player2 = cardArr2.map(c=>{
-            return <Card className='player-2' key={uuidv4()} image={c.image} code={c.code} />
+            return <Card className='player-2' class2='p2c' key={uuidv4()} image={c.image} code={c.code} />
         })
         let viewGame = (
             <div>
@@ -98,8 +102,8 @@ function Game(){
                 </div>
                 <div>
                     <p>The total of my cards compared to my opponent's is:</p>
-                    <button onClick={checkWin}>More</button>
-                    <button onClick={checkWin}>Less</button>
+                    <button className = 'uselect-btn' onClick={checkWin}>More</button>
+                    <button className = 'uselect-btn' onClick={checkWin}>Less</button>
                 </div>
                 <div>
                     <p>Opponent:</p>
