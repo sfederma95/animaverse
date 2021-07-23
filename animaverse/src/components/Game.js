@@ -33,7 +33,7 @@ function Game(){
             setIsVis(true);
         } catch(e){
             alert("Let's try that one again.")
-            history.push(`/users/${currentUser.usr_id}`)
+            history.push(`/users/${currentUser.usr_id}/game`)
         }
     }
     useEffect(function(){
@@ -89,27 +89,26 @@ function Game(){
     }
     async function showGame(){
         let player1 = cardArr1.map(c=>{
-            return <Card className='player-1' key={uuidv4()} image={c.image} code={c.code} />
+            return <Card className='player-1 card' key={uuidv4()} image={c.image} code={c.code} />
         })
         let player2 = cardArr2.map(c=>{
-            return <Card className='player-2' class2='p2c' key={uuidv4()} image={c.image} code={c.code} />
+            return <Card className='player-2 card' class2='p2c' key={uuidv4()} image={c.image} code={c.code} />
         })
         let viewGame = (
-            <div>
-                <div>
+            <div id='game-container'>
+                <div id='p1-hand'>
                     <p>Your hand:</p>
                     {player1}
                 </div>
                 <div>
-                    <p>The total of my cards compared to my opponent's is:</p>
-                    <button className = 'uselect-btn' onClick={checkWin}>More</button>
-                    <button className = 'uselect-btn' onClick={checkWin}>Less</button>
+                    <button id='more' className = 'uselect-btn' onClick={checkWin}>More</button>
+                    <button id='less' className = 'uselect-btn' onClick={checkWin}>Less</button>
                 </div>
-                <div>
-                    <p>Opponent:</p>
+                <div id='p2-hand'>
+                    <p>Opponent's hand:</p>
                     {player2}
                 </div>
-                <button onClick={newGame}>New Game</button>
+                <button id='new-game' onClick={newGame}>New Game</button>
             </div>
             )
         setGame(viewGame)
@@ -117,9 +116,9 @@ function Game(){
     }
     return(
         <div>
-            <h1>Mini-game</h1>
-            <p>Win the game to earn coins! Don't worry, there's no penalty for losing.</p>
-            {isVis ? <button onClick={showGame}>Start Game!</button> : null}
+            {isVis ? <h1 id='headline'>Minigame</h1> : null}
+            {isVis ? <p id='game-context'>Win the game to earn coins! Don't worry, there's no penalty for losing.</p> : null}
+            {isVis ? <button id='start-game' onClick={showGame}>Start Game!</button> : null}
             {game}
         </div>
     )

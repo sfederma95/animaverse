@@ -16,8 +16,8 @@ function AdoptPage(){
     }
     return(
         <div>
-            <h1>Choose your pet!</h1>
-            <p>Choose wisely, there is a limit of two pets per account!</p>
+            <h1>Choose a pet</h1>
+            <p>Choose wisely, there is a limit of two pets per account.</p>
             {petSrc===null ? <div>
                 <Pet src={rat} type='Rat' level={1} buttonFn={selectPetType} />
                 <Pet src={panda} type='Panda' level={1} buttonFn={selectPetType}/>

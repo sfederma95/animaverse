@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import Alert from '../Alert'
 import './login.css';
+import sleepCat from './sleepcat.svg';
+import {hideCat, showCat} from './forms'
 
 function LoginForm({login}){
     const history = useHistory();
@@ -29,15 +31,17 @@ function LoginForm({login}){
             <form id='form-el' onSubmit={handleSubmit}>
                 <p id='login-p'>Login:</p>
                 <div className='inputs'>
+                    <img alt='sleep cat' className='sleep-cat' src={sleepCat}/>
                     <label className = 'labels' htmlFor='username'>Username</label>
-                    <input className='input-el' id='username' name='username' value={formData.username} onChange={handleChange} type='text' required/>
+                    <input onFocus = {showCat} onBlur = {hideCat} className='input-el good-input' id='username' name='username' value={formData.username} onChange={handleChange} type='text' required/>
                 </div>
                 <div className='inputs'>
+                    <img alt='sleep cat' className='sleep-cat' src={sleepCat}/>
                     <label className = 'labels' htmlFor='password'>Password</label>
-                    <input className='input-el' id='password' name='password' value={formData.password} onChange={handleChange} type='text' required/>
+                    <input onFocus = {showCat} onBlur = {hideCat} className='input-el good-input' id='password' name='password' value={formData.password} onChange={handleChange} type='text' required/>
                 </div>
                 {formErrors.length ? <Alert messages={formErrors}/> : null}
-                <button id='login-btn'>Login</button>
+                <button type='submit' id='login-btn'>Login</button>
             </form>
         </div>
     )

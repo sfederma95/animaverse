@@ -6,6 +6,16 @@
     margin-bottom: 2em;
 }
 
+.good-input:focus-visible {
+    outline: rgba(87, 236, 87, 0.808) solid 3px;
+    outline-offset: -3px;
+}
+
+.bad-input {
+    outline: red solid 3px;
+    outline-offset: -3px;
+}
+
 #tagline {
     text-align: center;
     font-family: 'Courier New', Courier, monospace;
@@ -95,3 +105,11 @@
     margin: 1em;
     font-weight: bold;
 }
+
+.angry-cat {
+    position: absolute;
+    height: 5em;
+    width: 7em;
+    margin-bottom: 4em;
+    left: 75%;
+}  

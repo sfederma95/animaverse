@@ -1,12 +1,21 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 function Item({src,action,name,id,description,amount}){
+    const [itemInfo, setItemInfo] = useState(null)
+    const displayInfo = () => {
+        setItemInfo(<div className='item-text'>
+        <p><b>Item Name:</b> {name}</p>
+        <p><b>Description:</b> {description}</p>
+        <p><b>Effect:</b> {action==="Feed"? "Lower hunger" : "Increase happiness"} by {amount} points</p>
+        </div>)
+    }
+    const hideInfo = () => {
+        setItemInfo(null)
+    }
     return(
-        <div id={id}>
-            <img height='200px' width='200px' alt={name} src={src}/>
-            <p>Item Name: {name}</p>
-            <p>Description: {description}</p>
-            <p>Effect: {action==="Feed"? "Lower hunger" : "Increase happiness"} by {amount} points</p>
+        <div className='inv-item' id={id}>
+            <img tabIndex="0" onBlur={hideInfo} onClick={displayInfo} className='item-img' alt={name} src={src}/>
+            {itemInfo}
         </div>
     )
 }

@@ -3,8 +3,6 @@ import {Switch, Route, Redirect} from 'react-router-dom';
 import Homepage from '../components/Homepage'
 import AdoptPage from '../components/AdoptPage'
 import UserPage from '../components/UserPage'
-import Shop from '../components/Shop'
-import Inventory from '../components/Inventory'
 import NewUserForm from '../users/NewUserForm'
 import UpdateUserForm from '../users/UpdateUserForm'
 import Private from './Private'
@@ -42,12 +40,6 @@ function Routes({login, register}){
                 </Private>
                 <Private exact path='/users/:id'>
                     <UserPage  />
-                </Private>
-                <Private exact path='/:id/shop'>
-                    <Shop />
-                </Private>
-                <Private exact path='/:id/inventory'>
-                    <Inventory />
                 </Private>
                 <Redirect to='/' />
             </Switch>
