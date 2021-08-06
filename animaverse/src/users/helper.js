@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import angryCat from './angry-cat.png'
+import angryCat from './angry-cat.gif'
 import sleepCat from './sleepcat.svg';
 
 function targetErrInputs (msgs){

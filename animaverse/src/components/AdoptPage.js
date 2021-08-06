@@ -1,32 +1,32 @@
-import React, {useState} from 'react';
-import Pet from '../components/Pet';
-import rat from '../pets/rat.png'
-import panda from '../pets/panda.png'
-import cat from '../pets/cat.png'
-import bird from '../pets/bird.webp'
-import dog from '../pets/dog.png'
-import dinosaur from '../pets/dinosaur.png'
+import React, {useState, useEffect} from 'react';
+import PetSelection from './PetSelection';
 import AdoptForm from './AdoptForm'
+import './newpet.css'
 
 function AdoptPage(){
     const [petSrc, setPetSrc] = useState(null)
+    const [petNum, setPetNum] = useState(0)
     function selectPetType(e){
-        const getSrc = e.target.parentNode.firstChild.getAttribute('src')
+        const getSrc = window.jQuery(e.target).parent().children('img').attr('src')
         setPetSrc(getSrc)
     }
+    const showPet = (n) => {
+        const petList = window.jQuery('.adopt-pets');
+        window.jQuery(petList[n]).css('display','')
+        window.jQuery(petList[n]).siblings('.adopt-pets').css('display','none')
+    }
+    const goBack = () => {
+        setPetSrc(null)
+    }
+    useEffect(function(){
+        showPet(petNum)
+    },[petNum])
+    
     return(
-        <div>
+        <div id='adopt-container'>
             <h1>Choose a pet</h1>
             <p>Choose wisely, there is a limit of two pets per account.</p>
-            {petSrc===null ? <div>
-                <Pet src={rat} type='Rat' level={1} buttonFn={selectPetType} />
-                <Pet src={panda} type='Panda' level={1} buttonFn={selectPetType}/>
-                <Pet src={cat} type='Cat' level={1} buttonFn={selectPetType}/>
-                <Pet src={dinosaur} type='Dinosaur' level={1} buttonFn={selectPetType}/>
-                <Pet src={bird} type='Bird' level={1} buttonFn={selectPetType}/>
-                <Pet src={dog} type='Dog' level={1} buttonFn={selectPetType}/>
-            </div> :
-            <AdoptForm src={petSrc}/>}
+            { petSrc === null ? <PetSelection selectPetType={selectPetType}/> : <AdoptForm src={petSrc} goBack={goBack}/>}
         </div>
     )
 }

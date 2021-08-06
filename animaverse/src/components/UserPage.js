@@ -1,9 +1,7 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import UserContext from '../users/UserContext';
 import UserPet from './UserPet'
 import {Link} from 'react-router-dom'
-import AnimalsApi from '../api'
-import jwt from 'jsonwebtoken'
 import './userpg.css';
 import Inventory from './Inventory'
 import backpack from './user-graphics/backpack.gif';
@@ -12,20 +10,38 @@ import scareCat from './user-graphics/scare-cat.gif';
 import cancel from './user-graphics/cancel.png'
 import './usr-pet.css';
 import Shop from './Shop'
+import AnimalsApi from '../api'
+import jwt from 'jsonwebtoken'
 
 function UserPage(){
-    const {currentUser} = useContext(UserContext);
+    const {currentUser, setCurrentUser} = useContext(UserContext);
     const [inv, setInv] = useState(false)  
     const [pets, setPets] = useState(false)  
     const [overlay, setOverlay] = useState(false)
     const [shop, setShop] = useState(false)
+    const token = AnimalsApi.token
+    useEffect(function loadUserInfo(){
+        async function getCurrentUser(){
+          if(token) {
+            try {
+              let {id} = jwt.decode(token);
+              AnimalsApi.token = token;
+              let getUser = await AnimalsApi.getUser(id);
+              setCurrentUser(getUser);
+            } catch(err){
+              setCurrentUser(null)
+            }
+          }
+        }
+        getCurrentUser();
+      },[setCurrentUser, token])
     let userPets; 
     currentUser.pets ? userPets = currentUser.pets.map(p=>{
         return <UserPet petId={p.id} userId= {currentUser.usr_id} key={p.id} src={p.pet_img} name={p.pet_name} level={p.pet_lvl} happiness={p.happiness} hunger={p.hunger} exp={p.lvl_exp} status={p.pet_status} last_fed={p.last_fed === null ? 'N/A' : p.last_fed} last_play={p.last_play === null ? 'N/A' : p.last_fed} />
     }) : userPets = null;
     let letsAdopt;
     if (currentUser.pets){
-      currentUser.pets.length < 5 ? letsAdopt = (
+      currentUser.pets.length < 2 ? letsAdopt = (
         <div id='lets-adopt'>
             <Link id='adopt-redirect' to={`/${currentUser.usr_id}/adopt`}>Choose Pet</Link>
         </div>

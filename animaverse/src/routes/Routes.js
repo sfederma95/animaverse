@@ -4,7 +4,6 @@ import Homepage from '../components/Homepage'
 import AdoptPage from '../components/AdoptPage'
 import UserPage from '../components/UserPage'
 import NewUserForm from '../users/NewUserForm'
-import UpdateUserForm from '../users/UpdateUserForm'
 import Private from './Private'
 import LoginForm from '../users/LoginForm'
 import Game from '../components/Game'
@@ -31,9 +30,6 @@ function Routes({login, register}){
                 </Private>
                 <Private exact path='/:id/:pet_id/play'>
                     <InteractWindow action='Play' />
-                </Private>
-                <Private exact path='/:id/update'>
-                    <UpdateUserForm />
                 </Private>
                 <Private exact path='/:id/adopt'>
                     <AdoptPage />

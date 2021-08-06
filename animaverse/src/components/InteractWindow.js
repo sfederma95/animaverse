@@ -1,62 +1,80 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect} from 'react';
 import UserContext from '../users/UserContext'
-import {useParams, useHistory} from 'react-router-dom'
 import Item from './Item';
 import items from '../items/items'
 import { v4 as uuidv4 } from 'uuid';
 import AnimalsApi from '../api'
-import Alert from '../Alert'
+import jwt from 'jsonwebtoken'
 
-function InteractWindow({action}){
-    let history = useHistory();
-    const [formErrors,setFormErrors] = useState([])
-    const {currentUser} = useContext(UserContext)
-    const {pet_id} = useParams()
-    const currPet = currentUser.pets.find(p=>p.id===+pet_id)
+function InteractWindow({action, pet_id}){
+    useEffect(function(){
+        window.$(".item-img").draggable({
+            revert: 'invalid',
+            addClasses: false
+          });
+          window.$(".pet-img").droppable({
+            accept: ".item-img",
+            addClasses: false,
+            drop: function(e,ui) {     
+              let iid = window.$(ui.draggable[0]).parent().attr('id');
+              handleSelect(+iid)
+            }
+          }); 
+    },[])
+    const {currentUser, setCurrentUser} = useContext(UserContext);
+    const token = AnimalsApi.token
+    function loadUserInfo(){
+        async function getCurrentUser(){
+          if(token) {
+            try {
+              let {id} = jwt.decode(token);
+              AnimalsApi.token = token;
+              let getUser = await AnimalsApi.getUser(id);
+              setCurrentUser(getUser);
+            } catch(err){
+              setCurrentUser(null)
+            }
+          }
+        }
+        getCurrentUser();
+      }
     const filteredInv = currentUser.inventory.filter(i=>{
         let currItem = items[i.item_id-1]
         return currItem.action === action
     })
-    async function handleSelect(e){
-        let itemId = e.target.getAttribute('id')
-        try {
-            let msg;
-            if (action==='Feed') {
-                msg=`${currPet.pet_name} is happy to see you, thanks for feeding them`
-                await AnimalsApi.feedPet({ item_id: itemId, amt: items[itemId-1].amount }, currentUser.usr_id, pet_id);
-            } else {
-                msg=`${currPet.pet_name} is happy to see you, thanks for playing with them`
-                await AnimalsApi.playPet({ item_id: itemId, amt: items[itemId-1].amount }, currentUser.usr_id, pet_id);
-            }
-            await AnimalsApi.removeItem({ usr_id: currentUser.usr_id, item_id: itemId })
-            await AnimalsApi.addExp({amt:10},currPet.id, currentUser.usr_id)
-            alert(msg);
-            history.push(`/users/${currentUser.usr_id}`);
-        } catch (e) {
-            let errors = [e];
-            setFormErrors(errors);
+    async function handleSelect(iid){
+        let msg;
+        let res1;
+        let res2;
+        let initialErr = false;
+        if (action==='Feed') {
+            msg=`Thanks for feeding your pet`
+            res1 = await AnimalsApi.feedPet({ item_id: iid, amt: items[iid-1].amount }, currentUser.usr_id, pet_id);
+            if (res1.errors) initialErr = true;
+        } else {
+            msg=`Thanks for playing with your pet`
+            res2 = await AnimalsApi.playPet({ item_id: iid, amt: items[iid-1].amount }, currentUser.usr_id, pet_id);
+            if (res2.errors) initialErr=true;
         }
+        let res3 = await AnimalsApi.removeItem({ usr_id: currentUser.usr_id, item_id: iid })
+        let res4 = await AnimalsApi.addExp({amt:10},pet_id, currentUser.usr_id)
+        if(initialErr !== false || res3.errors || res4.errors){
+            alert(`Looks like you've already used that item, try a different one`)
+        }
+        else alert(msg);
+        loadUserInfo();
     }
     const inventoryItems = filteredInv.map(i=>{
         let currItem = items[i.item_id-1]
         return (
             <div key={uuidv4()}>
                 <Item src={currItem.img} name={currItem.name} description={currItem.description} id={currItem.id} action={currItem.action} amount={currItem.amount} />
-                <button onClick={handleSelect} id={currItem.id}>Select</button>
             </div>
         )
     })
     return(
-        <div>
-            {formErrors.length ? <Alert messages={formErrors}/> : null}
-            <img alt={currPet.pet_name} height="200px" width="200px" src={currPet.pet_img}/>
-            <p>{currPet.pet_name}</p>
-            <p>Hunger: {currPet.hunger}</p>
-            <p>Happiness: {currPet.happiness}</p>
-            <p><b>Keep in mind that all items are one-time use.</b></p>
-            <div>
-                {inventoryItems}
-            </div>
+        <div id='interact-items'>
+            {inventoryItems}
         </div>
 
     )

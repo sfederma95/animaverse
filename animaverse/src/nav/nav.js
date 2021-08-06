@@ -1,9 +1,7 @@
-import $ from 'jquery';
-
 function disappear(e){
-    const btn = $(e.target);
+    const btn = window.jQuery(e.target);
     btn.prop('hidden',true)
-    const links = $('.nav-li');
+    const links = window.jQuery('.nav-li');
     links.css('opacity','100%')
     links.css('display','initial')
     for (let link of links) {
@@ -13,13 +11,13 @@ function disappear(e){
 }
 
 function homeBtnBack(e) {
-    const btn = $('#home-btn');
+    const btn = window.jQuery('#home-btn');
     btn.prop('hidden',false)
-    const links = $('.nav-li');
+    const links = window.jQuery('.nav-li');
     for (let link of links) {
         link.animate([{ transform: 'translateY(0.5em)'},{ transform: 'translateY(1.5em)'},{ transform: 'translateY(0.5em)'},{ transform: 'translateY(0em)'},{ transform: 'translateY(-0.5em)'},{ transform: 'translateY(-3em)'}],{duration:500,easing: 'ease-in-out'})
         link.animate([{ opacity: '100%'},{ opacity: '0%'}],{duration:500, easing: 'ease-in-out'})
-        $(link).css('opacity','0%')
+        window.jQuery(link).css('opacity','0%')
     }
 }
 

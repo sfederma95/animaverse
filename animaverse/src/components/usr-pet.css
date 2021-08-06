@@ -7,6 +7,19 @@
     cursor: grab;
     width: 15em;
     height: 15em;
+    animation: wiggle 3s ease infinite;
+}
+
+#pets-collection :nth-child(2) :nth-child(1) {
+    animation-delay: 3.5s;
+  }
+
+@keyframes wiggle {
+    20%  { transform: translateX(0.5em) rotate(-2deg);}
+  40%  { transform: translateX(-0.5em) rotate(2deg);}
+  60%  { transform: translateX(0.5em) rotate(-2deg);}
+  80%  { transform: translateX(-0.2em) rotate(2deg);}
+  100% { transform: translateX(0);}
 }
 
 #pets-collection {
@@ -31,7 +44,7 @@
     position: absolute;
     display: inline-block;
     top: 5%;
-    right: 10%;
+    right: -5%;
     margin-top: 2em;
 }
 

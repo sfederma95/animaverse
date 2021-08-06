@@ -1,22 +1,38 @@
-import React, {useState, useContext} from 'react';
+import React, {useContext} from 'react';
 import ShopItem from './ShopItem';
 import items from '../items/items'
 import AnimalsApi from '../api'
 import UserContext from '../users/UserContext'
-import Alert from '../Alert'
 import './inventory.css';
+import jwt from 'jsonwebtoken'
 
 function Shop(){
-    const [formErrors,setFormErrors] = useState([])
-    const {currentUser} = useContext(UserContext)
+    const {currentUser, setCurrentUser} = useContext(UserContext)
+    const token = AnimalsApi.token
+    function loadUserInfo(){
+        async function getCurrentUser(){
+          if(token) {
+            try {
+              let {id} = jwt.decode(token);
+              AnimalsApi.token = token;
+              let getUser = await AnimalsApi.getUser(id);
+              setCurrentUser(getUser);
+            } catch(err){
+              setCurrentUser(null)
+            }
+          }
+        }
+        getCurrentUser();
+      }
     async function getItemId(e) {
         if (currentUser.inventory.length <= 21){
             let itemId = e.target.parentNode.parentNode.getAttribute('id');
             let res = await AnimalsApi.buyItem({ item_id: +itemId, usr_id: currentUser.usr_id }, currentUser.usr_id, items[itemId-1].price);
             if (res.errors) {
-                setFormErrors(res.errors)
+                alert('You do not have enough money for that item')
             } else{
                 alert(`${items[itemId-1].name} has been added to your inventory`);
+                loadUserInfo();
             }
         }
         else {
@@ -24,11 +40,10 @@ function Shop(){
         }
     }
     const shopItems = items.map(i=>{
-        return <ShopItem getItemId = {getItemId} key={i.id} id={i.id} price={i.price} src={i.img} action={i.action} amount={i.amount} name={i.name} description={i.description} />
+        return <ShopItem userGold = {currentUser.gold_amt} getItemId = {getItemId} key={i.id} id={i.id} price={i.price} src={i.img} action={i.action} amount={i.amount} name={i.name} description={i.description} />
     })
     return(
         <div id='shop-container'>
-            {formErrors.length ? <Alert messages={formErrors}/> : null}
             {shopItems}
         </div>
     )

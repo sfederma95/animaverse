@@ -75,6 +75,7 @@
     padding: 0 0 2em 0;
     font-family: 'Courier New', Courier, monospace;
     border-bottom: 15px solid rgba(0, 0, 0, 0.356);
+    background-color: white;
 
 }
 
@@ -153,6 +154,7 @@
     position: absolute;
     height: 5em;
     width: 7em;
-    margin-bottom: 4em;
+    margin-bottom: 5.5em !important;
+    animation: none ;
     left: 75%;
 }  

@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
-import $ from 'jquery';
 
-function ShopItem({src,name,id,description,amount, price, getItemId}){
+function ShopItem({src,name,id,description,amount, price, getItemId, userGold}){
     const [itemInfo, setItemInfo] = useState(false)
     const displayInfo = () => {
         setItemInfo(true)
@@ -15,6 +14,7 @@ function ShopItem({src,name,id,description,amount, price, getItemId}){
         <div tabIndex='0' onBlur={hideInfo} className='shop-item' id={id}>
             <img onClick={displayInfo}  alt={name} className='item-img' src={src}/>
             {itemInfo === true ? <div className='shop-text'>
+                <p id='usr-gold'>Your gold: {userGold}</p>
                 <p>Item Name: {name}</p>
                 <p>Price: {price} Gold</p>
                 <p>Description: {description}</p>

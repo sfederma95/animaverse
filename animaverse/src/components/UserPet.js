@@ -1,17 +1,32 @@
 import React, {useState} from 'react';
-import {Link} from 'react-router-dom'
+import InteractWindow from './InteractWindow';
 
 function UserPet({userId, src,name,type,level, happiness, hunger, exp, status, last_fed, last_play, petId}){
+    const [action,setAction] = useState(null)
     const [petInfo, setPetInfo] = useState(false)
     const displayInfo = () => {
-        setPetInfo(true)
+        petInteract===false ? setPetInfo(true) : setPetInfo(false)
     }
-    const hideInfo = () => {
+    const hideInfo = (e) => {
+        if (!e.currentTarget.contains(e.relatedTarget)){
+            setPetInfo(false)
+            setPetInteract(false)
+            let notThisPet = window.jQuery(`#${petId}`).siblings('.each-pet')
+            window.jQuery(notThisPet).css('display','')
+        }
+    }
+    const [petInteract, setPetInteract] = useState(false)
+    const displayInteract = (e) => {
+        let notThisPet = window.jQuery(`#${petId}`).siblings('.each-pet')
+        window.jQuery(notThisPet).css('display','none')
+        let btnHTML = window.jQuery(e.target).html();
+        setAction(btnHTML)
         setPetInfo(false)
+        setPetInteract(true)
     }
     return(
-        <div className='each-pet'>
-            <img tabIndex="0" onBlur={hideInfo} onClick={displayInfo} alt={type} className='pet-img' src={src}/>
+        <div tabIndex="0" onBlur={hideInfo} id={`${petId}`} className='each-pet'>
+            <img onClick={displayInfo} alt={type} className='pet-img' src={src}/>
             {petInfo ? <div className='pet-text'>
                 <p>Name: {name}</p>
                 <p>Level: {level}</p>
@@ -22,10 +37,11 @@ function UserPet({userId, src,name,type,level, happiness, hunger, exp, status, l
                 <p>Last Fed: {last_fed}</p>
                 <p>Last Played: {last_play}</p>
                 <div className='btn-group'>
-                    <button className='btns'>Feed</button>
-                    <button className='btns'>Play</button>
+                    <button onClick={displayInteract} className='btns'>Feed</button>
+                    <button onClick={displayInteract} className='btns'>Play</button>
                 </div>
             </div> : null}
+            {petInteract === true ? <InteractWindow action={action} pet_id={petId}/> : null}
         </div>
     )
 }

@@ -4,7 +4,7 @@ import Alert from '../Alert'
 import AnimalsApi from '../api'
 import UserContext from '../users/UserContext'
 
-function AdoptForm({src}){
+function AdoptForm({src, goBack}){
     const {currentUser} = useContext(UserContext)
     const history = useHistory();
     const [formData,setFormData]=useState({
@@ -27,15 +27,16 @@ function AdoptForm({src}){
         setFormData(l=>({...l,[name]:value}))
     }
     return(
-        <div>
-            <img alt='adopt-pet' src={src}/>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor='pet_name'>Pet Name:</label>
-                    <input id='pet_name' name='pet_name' value={formData.pet_name} onChange={handleChange} type='text' required/>
+        <div id='whole-form'>
+            <img className='chosen-pet' alt='adopt-pet' src={src}/>
+            <form id='form-el' onSubmit={handleSubmit}>
+                <div className='inputs'>
+                    <label className='labels' htmlFor='pet_name'>Pet Name:</label>
+                    <input className='input-el good-input' id='pet_name' name='pet_name' value={formData.pet_name} onChange={handleChange} type='text' required/>
                 </div>
                 {formErrors.length ? <Alert messages={formErrors}/> : null}
-                <button>Create!</button>
+                <button className='adopt-btns'>Create</button>
+                <button className='adopt-btns' onClick={goBack}>Back</button>
             </form>
         </div>
     )

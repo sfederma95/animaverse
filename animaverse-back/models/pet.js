@@ -165,7 +165,7 @@ class Pet {
     static async onlyTwoPets(usr_id){
         const pets = await db.query(`SELECT * FROM pets WHERE usr_id=$1`,[usr_id])
         if(pets.rows.length>=2) throw new ExpressError("Looks like you already have two pets",500)
-        return true;
+        else return true;
     }
 }
 
