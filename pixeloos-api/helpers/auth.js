@@ -32,7 +32,7 @@ const ensureDevAuth = (req,res,next)=>{
     try {
         const devAuth = req.body.devKey;
         if (devAuth !== DEV_APPROVAL_KEY){
-            throw new ExpressError("This request is not approved by the developer")
+            throw new ExpressError("This request is not approved by the developer", 500)
         }
         return next();
     } catch(err){

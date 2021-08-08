@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div>
+    <div
+      id="user-show"
+    >
+      <img
+        alt="usr-avatar"
+        height="200px"
+        id="usr-img"
+        width="200px"
+      />
+      <h1
+        id="welcome-line"
+      >
+        Welcome, someuser!
+      </h1>
+      <div
+        id="interact-icons"
+      >
+        <img
+          alt="backpack-icon"
+          class="click-icons"
+          src="backpack.gif"
+        />
+        <img
+          alt="coin-icon"
+          class="click-icons"
+          src="coin.gif"
+        />
+        <img
+          alt="cat-icon"
+          class="click-icons"
+          src="scare-cat.gif"
+        />
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

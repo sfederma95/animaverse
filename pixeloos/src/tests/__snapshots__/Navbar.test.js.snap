@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot when logged in 1`] = `
+<DocumentFragment>
+  <nav
+    id="navbar"
+  >
+    <div
+      class="links-div"
+    >
+      <a
+        aria-current="page"
+        class="nav-li active"
+        href="/"
+      >
+        Home
+      </a>
+      <a
+        class="nav-li"
+        href="/users/7"
+      >
+        Profile
+      </a>
+      <a
+        class="nav-li"
+        href="/7/game"
+      >
+        Play Game
+      </a>
+      <a
+        aria-current="page"
+        class="nav-li active"
+        href="/"
+      >
+        Logout
+      </a>
+    </div>
+    <img
+      alt="home button"
+      id="home-btn"
+      src="home-btn.svg"
+    />
+  </nav>
+</DocumentFragment>
+`;
+
+exports[`matches snapshot when logged out 1`] = `
+<DocumentFragment>
+  <nav
+    id="navbar"
+  >
+    <div
+      class="links-div"
+    >
+      <a
+        aria-current="page"
+        class="nav-li active"
+        href="/"
+      >
+        Home
+      </a>
+      <a
+        class="nav-li"
+        href="/login"
+      >
+        Login
+      </a>
+      <a
+        class="nav-li"
+        href="/register"
+      >
+        Sign Up
+      </a>
+    </div>
+    <img
+      alt="home button"
+      id="home-btn"
+      src="home-btn.svg"
+    />
+  </nav>
+</DocumentFragment>
+`;

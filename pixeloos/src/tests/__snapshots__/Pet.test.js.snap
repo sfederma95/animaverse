@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="adopt-pets"
+  >
+    <p>
+      1 / 6
+    </p>
+    <img
+      alt="dog"
+    />
+    <p>
+      Type: dog
+    </p>
+    <p>
+      Level: 1
+    </p>
+    <button>
+      Select
+    </button>
+  </div>
+</DocumentFragment>
+`;

@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = process.env.BASE_URL || 'http://localhost:3001'
-const DEV_APPROVAL_KEY = process.env.DEV_APPROVAL_KEY || 'thissupersecretkeyfornow'
+import {BASE_URL, DEV_APPROVAL_KEY} from './config'
 
 class AnimalsApi {
     static token;

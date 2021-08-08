@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div>
+    <div>
+      <h1
+        class="header headerColors"
+      >
+        Welcome to 
+        <span
+          id="pixeloos"
+        >
+          Pixeloos
+        </span>
+      </h1>
+      <p
+        id="tagline"
+      >
+        Meet pixeloos, play with and feed them, make new memories!
+      </p>
+      <a
+        class="links"
+        href="/login"
+        id="login"
+      >
+        Log in
+      </a>
+      <a
+        class="links"
+        href="/register"
+        id="register"
+      >
+        Sign up
+      </a>
+      <div
+        id="pet-contain"
+      >
+        <img
+          alt="dino"
+          id="dino"
+          src="dinosaur.png"
+        />
+        <img
+          alt="cat"
+          id="cat"
+          src="cat.png"
+        />
+        <img
+          alt="panda"
+          id="panda"
+          src="panda.png"
+        />
+        <img
+          alt="dog"
+          id="dog"
+          src="dog.png"
+        />
+        <img
+          alt="bird"
+          id="bird"
+          src="bird.webp"
+        />
+        <img
+          alt="rat"
+          id="rat"
+          src="rat.png"
+        />
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

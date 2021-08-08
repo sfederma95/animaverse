@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div>
+    <img
+      alt="adopt-pet"
+      src="rat.png"
+    />
+    <form>
+      <div>
+        <label
+          for="pet_name"
+        >
+          Pet Name:
+        </label>
+        <input
+          id="pet_name"
+          name="pet_name"
+          required=""
+          type="text"
+          value=""
+        />
+      </div>
+      <button>
+        Create!
+      </button>
+      <button>
+        Back
+      </button>
+    </form>
+  </div>
+</DocumentFragment>
+`;

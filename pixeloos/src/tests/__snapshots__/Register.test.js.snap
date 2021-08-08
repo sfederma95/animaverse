@@ -1,0 +1,117 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    id="reg-form"
+  >
+    <h1
+      id="tagline"
+    >
+      Sign up to start playing with Pixeloos
+    </h1>
+    <form
+      id="form-el"
+    >
+      <p
+        id="register-p"
+      >
+        Register:
+      </p>
+      <div
+        class="inputs"
+      >
+        <img
+          alt="sleep cat"
+          class="sleep-cat"
+          src="sleepcat.svg"
+        />
+        <label
+          class="labels"
+          for="username"
+        >
+          Username: 
+        </label>
+        <input
+          class="input-el good-input"
+          id="username"
+          name="username"
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        class="inputs"
+      >
+        <img
+          alt="sleep cat"
+          class="sleep-cat"
+          src="sleepcat.svg"
+        />
+        <label
+          class="labels"
+          for="password"
+        >
+          Password: 
+        </label>
+        <input
+          class="input-el good-input"
+          id="password"
+          name="password"
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        class="inputs"
+      >
+        <img
+          alt="sleep cat"
+          class="sleep-cat"
+          src="sleepcat.svg"
+        />
+        <label
+          class="labels"
+          for="email"
+        >
+          Email: 
+        </label>
+        <input
+          class="input-el good-input"
+          id="email"
+          name="email"
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        class="inputs"
+      >
+        <img
+          alt="sleep cat"
+          class="sleep-cat"
+          src="sleepcat.svg"
+        />
+        <label
+          class="labels"
+          for="avatar"
+        >
+          Avatar URL: 
+        </label>
+        <input
+          class="input-el good-input"
+          id="avatar"
+          name="avatar"
+          type="text"
+          value=""
+        />
+      </div>
+      <button
+        id="reg-btn"
+      >
+        Register
+      </button>
+    </form>
+  </div>
+</DocumentFragment>
+`;
