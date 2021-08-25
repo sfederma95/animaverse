@@ -13,6 +13,8 @@ function Game(){
     let history = useHistory();
     const [cardArr1,setCardArr1] = useState([])
     const [cardArr2,setCardArr2] = useState([])
+    const [classp2, setClassp2] = useState('player-2')
+    const [msg, setMsg] = useState('')
     const [game,setGame] = useState(null)
     const [isVis, setIsVis] = useState(true)
     const {currentUser, setCurrentUser} = useContext(UserContext);
@@ -45,12 +47,11 @@ function Game(){
             setCardArr1([]);
             setCardArr2([]);
             setIsVis(true);
+            setMsg('')
+            setClassp2('player-2')
         }
         async function checkWin(e){
-            const p2cards = document.getElementsByClassName("p2c");
-            for (let i =0; i<p2cards.length; i++){
-                p2cards[i].classList.toggle('player-2')
-            }
+            setClassp2('')
             const gmBtns = document.getElementsByClassName("uselect-btn");
             for (let i =0; i<gmBtns.length; i++){
                 gmBtns[i].style.display = "none"
@@ -59,26 +60,26 @@ function Game(){
             let player2Total = cardArr2.reduce((acc,val) => (+acc.value)+(+val.value) )
             if (e.target.innerHTML==="More") {
                 if(player1Total === player2Total){
-                    alert("Your hands are equal! Click 'New Game' to try again.")
+                    setMsg("Your hands are equal! Click 'New Game' to try again.")
                 }
                 else if(player1Total < player2Total) {
-                    alert('You lose!')
+                    setMsg('You lose! ')
                 } 
                 else {
-                    alert('You win!')
+                    setMsg('You win! ')
                     let res = await AnimalsApi.addGold(currentUser.usr_id,10)
                     setCurrentUser(res.updatedUser)
                 }
             }
             if (e.target.innerHTML==="Less") {
                 if(player1Total === player2Total){
-                    alert("How about that, your hands are equal! Click 'New Game' to try again.")
+                    setMsg("How about that, your hands are equal! Click 'New Game' to try again.")
                 }
                 else if(player1Total > player2Total) {
-                    alert('You lose!')
+                    setMsg('You lose! ')
                 }
                 else {
-                    alert('You win!')
+                    setMsg('You win! ')
                     let res = await AnimalsApi.addGold(currentUser.usr_id,10)
                     setCurrentUser(res.updatedUser)
                 }
@@ -89,7 +90,7 @@ function Game(){
                 return <Card className='player-1 card' key={uuidv4()} image={c.image} code={c.code} />
             })
             let player2 = cardArr2.map(c=>{
-                return <Card className='player-2 card' class2='p2c' key={uuidv4()} image={c.image} code={c.code} />
+                return <Card className={'card ' + classp2} class2='p2c' key={uuidv4()} image={c.image} code={c.code} />
             })
             let viewGame = (
                 <div id='game-container'>
@@ -105,13 +106,14 @@ function Game(){
                         <p>Opponent's hand:</p>
                         {player2}
                     </div>
-                    <button id='new-game' onClick={newGame}>New Game</button>
+                    <button id='new-game' onClick={newGame}>New game?</button>
+                    <p id='message'>{msg}</p>
                 </div>
                 )
             setGame(viewGame)
         }
         if(cardArr1.length && cardArr2.length) setUpViewGame();
-    },[cardArr1, cardArr2, currentUser.usr_id, setCurrentUser])
+    },[cardArr1, cardArr2, currentUser.usr_id, setCurrentUser,msg, classp2])
     useEffect(()=>{
         if(game!==null) setIsVis(false)
     },[game])

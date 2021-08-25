@@ -111,6 +111,16 @@
     font-size: 1.2em;
 }
 
+#message{
+    position: absolute;
+    font-weight: bold;
+    font-size: 3em;
+    width: 8em;
+    font-family: 'Courier New', Courier, monospace;
+    bottom: 5%;
+    left: calc(50vw - 8em/3);
+}
+
 @media only screen and (max-width: 800px) {
     #start-game{
         margin-top: 5em;
@@ -155,5 +165,10 @@
         bottom: 5%;
         font-size: 1em !important;
         z-index: 10;
+    }
+
+    #message{
+        bottom: -2%;
+        left: calc(50vw - 8em/3.5);
     }
   }

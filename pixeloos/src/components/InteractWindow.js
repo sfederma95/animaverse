@@ -42,7 +42,7 @@ function InteractWindow({action, pet_id}){
         let res3 = await AnimalsApi.removeItem({ usr_id: currentUser.usr_id, item_id: iid })
         let res4 = await AnimalsApi.addExp({amt:10},pet_id, currentUser.usr_id)
         if(initialErr !== false || res3.errors || res4.errors){
-            alert(`Looks like you've already used that item, try a different one`)
+            alert(`Looks like you've used up that item, try a different one`)
         }
         else alert(msg);
         loadUserInfo();

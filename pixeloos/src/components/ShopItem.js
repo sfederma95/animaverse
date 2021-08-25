@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 
-function ShopItem({src,name,id,description,amount, price, getItemId, userGold}){
+function ShopItem({src,name,id,description,amount, price, getItemId, userGold, buyBtn}){
     const [itemInfo, setItemInfo] = useState(false)
+    const [btnText, setBtnText] = useState('Buy')
     const displayInfo = () => {
         setItemInfo(true)
     }
@@ -9,6 +10,10 @@ function ShopItem({src,name,id,description,amount, price, getItemId, userGold}){
         if (!e.currentTarget.contains(e.relatedTarget)){
             setItemInfo(false)
         }
+    }
+    const updateItem = (e) => {
+        getItemId(e);
+        setBtnText('Bought')
     }
     return(
         <div tabIndex='0' onBlur={hideInfo} className='shop-item' id={id}>
@@ -19,7 +24,7 @@ function ShopItem({src,name,id,description,amount, price, getItemId, userGold}){
                 <p>Price: {price} Gold</p>
                 <p>Description: {description}</p>
                 <p>Increase: {amount} points</p>
-                <button className='buy-btn' onClick={getItemId}>Buy</button>
+                <button className='buy-btn' onClick={updateItem}>{btnText}</button>
             </div> : null}
         </div>
     )

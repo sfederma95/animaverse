@@ -31,7 +31,6 @@ function Shop(){
             if (res.errors) {
                 alert('You do not have enough money for that item')
             } else{
-                alert(`${items[itemId-1].name} has been added to your inventory`);
                 loadUserInfo();
             }
         }
