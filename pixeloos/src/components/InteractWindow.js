@@ -7,23 +7,10 @@ import AnimalsApi from '../api'
 import jwt from 'jsonwebtoken'
 
 function InteractWindow({action, pet_id}){
-    useEffect(function(){
-        window.$(".item-img").draggable({
-            revert: 'invalid',
-            addClasses: false
-          });
-          window.$(".pet-img").droppable({
-            accept: ".item-img",
-            addClasses: false,
-            drop: function(e,ui) {     
-              let iid = window.$(ui.draggable[0]).parent().attr('id');
-              handleSelect(+iid)
-            }
-          }); 
-    },[])
     const {currentUser, setCurrentUser} = useContext(UserContext);
-    const token = AnimalsApi.token
-    function loadUserInfo(){
+    const token = AnimalsApi.token;
+    useEffect(function(){
+      function loadUserInfo(){
         async function getCurrentUser(){
           if(token) {
             try {
@@ -38,11 +25,7 @@ function InteractWindow({action, pet_id}){
         }
         getCurrentUser();
       }
-    const filteredInv = currentUser.inventory.filter(i=>{
-        let currItem = items[i.item_id-1]
-        return currItem.action === action
-    })
-    async function handleSelect(iid){
+      async function handleSelect(iid){
         let msg;
         let res1;
         let res2;
@@ -64,6 +47,23 @@ function InteractWindow({action, pet_id}){
         else alert(msg);
         loadUserInfo();
     }
+        window.$(".item-img").draggable({
+            revert: 'invalid',
+            addClasses: false
+          });
+          window.$(".pet-img").droppable({
+            accept: ".item-img",
+            addClasses: false,
+            drop: function(e,ui) {     
+              let iid = window.$(ui.draggable[0]).parent().attr('id');
+              handleSelect(+iid)
+            }
+          }); 
+    },[action, currentUser.usr_id, pet_id, token, setCurrentUser])
+    const filteredInv = currentUser.inventory.filter(i=>{
+        let currItem = items[i.item_id-1]
+        return currItem.action === action
+    })
     const inventoryItems = filteredInv.map(i=>{
         let currItem = items[i.item_id-1]
         return (

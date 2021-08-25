@@ -3,6 +3,9 @@ import {render} from '@testing-library/react';
 import {MemoryRouter} from 'react-router';
 import PetSelection from '../components/PetSelection';
 import {UserProvider} from './testSetup';
+import $ from 'jquery';
+window.jQuery = $;
+window.$ = $;
 
 it ('renders pet select component without crashing', function(){
     render(

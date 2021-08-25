@@ -25,9 +25,9 @@ function Inventory(){
         }
         getCurrentUser();
       },[setCurrentUser, token])
-    const inventoryItems = currentUser.inventory.map(i=>{
-        let currItem = items[i.item_id-1]
-        return <Item key={uuidv4()} src={currItem.img} name={currItem.name} description={currItem.description} id={currItem.id} action={currItem.action} amount={currItem.amount} />
+    const inventoryItems = Object.keys(currentUser.items).map(i=>{
+        let currItem = items[i-1]
+        return <Item key={uuidv4()} src={currItem.img} name={currItem.name} description={currItem.description} id={currItem.id} action={currItem.action} amount={currItem.amount} x={currentUser.items[i]} />
     })
     return(
         <div id='inventory'>

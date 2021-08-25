@@ -1,0 +1,127 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="slideshow-container"
+  >
+    <button
+      class="prev"
+    >
+      ❮
+    </button>
+    <div
+      class="adopt-pets"
+    >
+      <p>
+        1 / 6
+      </p>
+      <img
+        alt="Rat"
+        src="rat.png"
+      />
+      <p>
+        Type: Rat
+      </p>
+      <p>
+        Level: 1
+      </p>
+    </div>
+    <div
+      class="adopt-pets"
+      style="display: none;"
+    >
+      <p>
+        2 / 6
+      </p>
+      <img
+        alt="Panda"
+        src="panda.png"
+      />
+      <p>
+        Type: Panda
+      </p>
+      <p>
+        Level: 1
+      </p>
+    </div>
+    <div
+      class="adopt-pets"
+      style="display: none;"
+    >
+      <p>
+        3 / 6
+      </p>
+      <img
+        alt="Cat"
+        src="cat.png"
+      />
+      <p>
+        Type: Cat
+      </p>
+      <p>
+        Level: 1
+      </p>
+    </div>
+    <div
+      class="adopt-pets"
+      style="display: none;"
+    >
+      <p>
+        4 / 6
+      </p>
+      <img
+        alt="Dinosaur"
+        src="dinosaur.png"
+      />
+      <p>
+        Type: Dinosaur
+      </p>
+      <p>
+        Level: 1
+      </p>
+    </div>
+    <div
+      class="adopt-pets"
+      style="display: none;"
+    >
+      <p>
+        5 / 6
+      </p>
+      <img
+        alt="Bird"
+        src="bird.webp"
+      />
+      <p>
+        Type: Bird
+      </p>
+      <p>
+        Level: 1
+      </p>
+    </div>
+    <div
+      class="adopt-pets"
+      style="display: none;"
+    >
+      <p>
+        6 / 6
+      </p>
+      <img
+        alt="Dog"
+        src="dog.png"
+      />
+      <p>
+        Type: Dog
+      </p>
+      <p>
+        Level: 1
+      </p>
+    </div>
+    <button
+      class="next"
+    >
+      ❯
+    </button>
+  </div>
+</DocumentFragment>
+`;

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-function Item({src,action,name,id,description,amount}){
+function Item({src,action,name,id,description,amount,x}){
     const [itemInfo, setItemInfo] = useState(null)
     const displayInfo = () => {
         setItemInfo(<div className='item-text'>
@@ -15,6 +15,7 @@ function Item({src,action,name,id,description,amount}){
     return(
         <div className='inv-item' id={id}>
             <img tabIndex="0" onBlur={hideInfo} onClick={displayInfo} className='item-img' alt={name} src={src}/>
+            {x ? <span className='counters'>{x}x</span> : null}
             {itemInfo}
         </div>
     )

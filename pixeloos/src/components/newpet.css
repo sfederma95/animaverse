@@ -117,3 +117,45 @@
     height: 40%;
     width: 40%;
 }
+
+@media only screen and (max-width: 800px) {
+    .chosen-pet{
+        height: 30%;
+        width: 30%;
+        margin-bottom: 3em;
+        margin-top: 2em;
+    }
+
+    .slideshow-container {
+        width: 80%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin-bottom: 2em;
+        height: 50%;
+    }
+    .adopt-pets {
+        width: 80%;
+    }
+
+    .adopt-pets :nth-child(1){
+        top: 90%;
+    }
+
+    .next{
+        top: 85%;
+        left: 80%;
+    }
+
+    .prev{
+        top: 85%;
+        right: 80%;
+    }
+    .slideshow-container :nth-child(4) img{
+        margin: -2em 0em 1em 0em;
+    }
+
+    .slideshow-container :nth-child(6) img{
+        margin: -1em 0em 2em 0em;
+    }
+}

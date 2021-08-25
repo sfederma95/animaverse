@@ -36,6 +36,16 @@ exports[`matches snapshot 1`] = `
           src="scare-cat.gif"
         />
       </div>
+      <div
+        id="lets-adopt"
+      >
+        <a
+          href="/7/adopt"
+          id="adopt-redirect"
+        >
+          Choose Pet
+        </a>
+      </div>
     </div>
   </div>
 </DocumentFragment>

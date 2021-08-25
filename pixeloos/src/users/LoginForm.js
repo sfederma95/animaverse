@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import Alert from '../Alert'
-import './login.css';
 import sleepCat from './sleepcat.svg';
 import {hideCat, showCat} from './forms'
 

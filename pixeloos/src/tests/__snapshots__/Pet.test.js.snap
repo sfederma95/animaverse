@@ -17,9 +17,6 @@ exports[`matches snapshot 1`] = `
     <p>
       Level: 1
     </p>
-    <button>
-      Select
-    </button>
   </div>
 </DocumentFragment>
 `;

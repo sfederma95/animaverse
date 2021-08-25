@@ -32,7 +32,7 @@ function UserPet({userId, src,name,type,level, happiness, hunger, exp, status, l
                 <p>Level: {level}</p>
                 <p>Level Exp: {exp}</p>
                 <p>Happiness: {happiness}</p>
-                <p>Hunger: {hunger}</p>
+                <p>Fullness: {hunger}</p>
                 <p>Status: {status}</p>
                 <p>Last Fed: {last_fed}</p>
                 <p>Last Played: {last_play}</p>

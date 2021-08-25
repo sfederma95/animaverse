@@ -20,6 +20,7 @@
     width: 75%;
     flex-direction: column;
     margin-left: 5%;
+    margin-top: 2em;
 }
 
 .item-text {
@@ -28,10 +29,52 @@
     border: 1px solid black;
     padding: 0 1em 0.3em 1em;
     width: 50%;
-    height: 40%;
     background-color: rgba(229, 245, 229, 0.9);
     position: absolute;
     display: inline-block;
     top: 20%;
     right: -10%;
+}
+
+.counters {
+    border: 1px black solid;
+    background-color: white;
+    padding: 0.3em;
+    border-radius: 50%;
+    position: relative;
+    left: -2em;
+    bottom: 1em;
+}
+
+@media only screen and (max-width: 800px) {
+    .item-img{
+        width: 3.5em;
+        height: 3.5em;
+    }
+
+    #inventory {
+        justify-content: flex-start;
+        align-content: flex-start;
+        display: flex;
+        flex-wrap: wrap;
+        height: 100%;
+        width: 100%;
+        flex-direction: row;
+        margin-top: -0.5em;
+        margin-left: 10%;
+    }
+    .counters{
+        padding: 0.2em;
+        left: -1em;
+        bottom: 0.5em;
+    }
+    .item-text{
+        right: 0%;
+        top: 0%;
+        font-size: 1em;
+        width: 80%;
+        left: -4%;
+        top: 60%;
+        z-index: 10;
+    }
 }

@@ -7,13 +7,13 @@ import {disappear, homeBtnBack} from './nav'
 
 function Navbar({logout}){
     const {currentUser} = useContext(UserContext)
+    function logoutBtn(){
+        homeBtnBack();
+        logout();
+    }
     function loggedIn(){
         return(
                 <div className='links-div'>
-                    <NavLink onClick={homeBtnBack} className='nav-li' to='/'>
-                        Home
-                    </NavLink>
-
                     <NavLink onClick={homeBtnBack} className='nav-li' to={`/users/${currentUser.usr_id}`}>
                         Profile
                     </NavLink>
@@ -21,7 +21,7 @@ function Navbar({logout}){
                         Play Game
                     </NavLink>
 
-                    <NavLink onClick={homeBtnBack} className='nav-li' to='/' onClick={logout}>
+                    <NavLink onClick={logoutBtn} className='nav-li' to='/'>
                         Logout
                     </NavLink>
                 </div>

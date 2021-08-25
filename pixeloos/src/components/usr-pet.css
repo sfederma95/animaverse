@@ -7,18 +7,18 @@
     cursor: grab;
     width: 15em;
     height: 15em;
-    animation: wiggle 3s ease infinite;
+    animation: wiggle 1s ease infinite;
 }
 
 #pets-collection :nth-child(2) :nth-child(1) {
-    animation-delay: 3.5s;
+    animation-delay: 1.5s;
   }
 
 @keyframes wiggle {
-    20%  { transform: translateX(0.5em) rotate(-2deg);}
-  40%  { transform: translateX(-0.5em) rotate(2deg);}
-  60%  { transform: translateX(0.5em) rotate(-2deg);}
-  80%  { transform: translateX(-0.2em) rotate(2deg);}
+    20%  { transform: rotate(-2deg);}
+  40%  { transform: rotate(2deg);}
+  60%  { transform: rotate(-2deg);}
+  80%  { transform: rotate(2deg);}
   100% { transform: translateX(0);}
 }
 
@@ -39,11 +39,10 @@
     border: 1px solid black;
     padding: 0 1em 0.3em 1em;
     width: 55%;
-    height: 70%;
     background-color: rgba(229, 245, 229, 0.9);
     position: absolute;
     display: inline-block;
-    top: 5%;
+    top: 20%;
     right: -5%;
     margin-top: 2em;
 }
@@ -68,4 +67,29 @@
 .btn-group {
     display: flex;
     justify-content: center;
+    margin-bottom: 1em;
+}
+
+@media only screen and (max-width: 800px) {
+    .pet-img{
+        height: 8em;
+        width: 8em;
+    }
+
+    .each-pet{
+        margin: 3em 0.5em 0em 0.5em;
+    }
+
+    #pets-collection{
+        flex-direction: row;
+    }
+    .pet-text{
+        font-size: 0.8em;
+        width: 80vw;
+        top: 35%;
+        left: -4%;
+    }
+    .btns{
+        font-size: 1em;
+    }
 }

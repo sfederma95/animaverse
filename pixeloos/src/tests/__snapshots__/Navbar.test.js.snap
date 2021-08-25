@@ -9,13 +9,6 @@ exports[`matches snapshot when logged in 1`] = `
       class="links-div"
     >
       <a
-        aria-current="page"
-        class="nav-li active"
-        href="/"
-      >
-        Home
-      </a>
-      <a
         class="nav-li"
         href="/users/7"
       >

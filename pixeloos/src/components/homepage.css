@@ -39,13 +39,13 @@
     }
 }
 
-#tagline {
+#hm-tagline {
     text-align: center;
     font-family: 'Courier New', Courier, monospace;
     font-size: 1.5em;
 }
 
-.links {
+.hm-links {
     text-decoration: none;
     border: 2px solid black;
     padding: 0.5em;
@@ -177,4 +177,27 @@
 
     }
     
+  }
+
+  @media only screen and (max-width: 800px) {
+      #pet-contain :not(#cat){
+          display: none;
+      }
+
+      .header{
+          font-size: 3em;
+          margin-top: 30%;
+          margin-bottom: 2em;
+      }
+
+      #cat {
+          position: absolute;
+          bottom: 2em;
+          left: calc(50% - 11rem/2);
+      }
+      #hm-tagline {
+          margin-left: 0.5em;
+          margin-right: 0.5em;
+          font-size: 1em;
+      }
   }

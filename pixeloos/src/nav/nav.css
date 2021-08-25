@@ -18,7 +18,7 @@
     animation-timing-function: ease-in-out;
     animation-iteration-count: infinite;
     -webkit-animation-iteration-count: infinite;
-    margin-top: -1.5em;
+    margin-top: 2%;
 }
 
 #home-btn:hover {
@@ -50,24 +50,38 @@
     padding: 0.5em;
     color: black;
     background-color: rgba(216, 240, 216, 0.9);
-    border-radius: 10%;
+    border-radius: 0.2em;
     font-family: 'Courier New', Courier, monospace;
     height: 1em;
     width: 6em;
     text-align: center;
     font-weight: bold;
-    margin-top: 2em;
-    font-size: 0.9em;
-    position: relative;
+    margin-top: 2%;
+    font-size: 100%;
     opacity: 0%;
+    display: none;
 }
 
 .links-div {
     display: flex;
     justify-content: space-evenly;
-    align-items: center;
+    align-items: flex-start;
 }
 
-.nav-li:hover {
-    cursor: default;
-}
+@media only screen and (max-width: 800px) {
+    .nav-li{
+        width: 20%;
+        height: 30%;
+        margin-top: 5%;
+        border: 1px solid black;
+        text-align: center;
+        font-size: 90%;
+    }
+    
+    #home-btn{
+        height: 4rem;
+        width: 4rem;
+        left: calc(50vw - 4rem/2);
+        margin-top: 5%
+    }
+  }

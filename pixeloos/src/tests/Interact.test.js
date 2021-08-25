@@ -3,6 +3,11 @@ import {render} from '@testing-library/react';
 import {MemoryRouter} from 'react-router';
 import InteractWindow from '../components/InteractWindow';
 import {UserProvider} from './testSetup';
+import  $ from 'jquery';
+window.jQuery = $;
+window.$ = jquery-ui;
+import 'jquery-ui';
+
 
 it ('renders interaction component without crashing', function(){
     render(

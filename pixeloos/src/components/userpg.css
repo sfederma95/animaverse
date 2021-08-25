@@ -13,6 +13,7 @@
     padding: 1em;
     border-radius: 10px;
     background-color: white;
+    margin-top: 4em;
 }
 
 #welcome-line {
@@ -63,8 +64,8 @@
 
 #cancel-btn{
     position: absolute;
-    height: 8%;
-    width: 5%;
+    height: 4em;
+    width: 4em;
     bottom: 4em;
     left: 48%;
     cursor: grab;
@@ -166,4 +167,54 @@
 
 #usr-gold {
     font-weight: bold;
+}
+
+@media only screen and (max-width: 800px) {
+    #usr-img{
+        width: 40%;
+        height: 40%;
+        margin-top: 10%;
+    }
+
+    .click-icons{
+        height: 15%;
+        width: 15%;
+    }
+
+    #cancel-btn{
+        width: 2em;
+        height: 2em;
+        bottom: 3%;
+    }
+
+    #shop-container {
+        justify-content: flex-start;
+        align-content: flex-start;
+        display: flex;
+        flex-wrap: wrap;
+        height: 100%;
+        width: 100%;
+        flex-direction: row;
+        margin-top: -0.5em;
+        margin-left: 6%;
+    }
+    .shop-text{
+        right: 0%;
+        top: 0%;
+        font-size: 0.8em;
+        width: 80%;
+        top: 58%;
+        left: 0.5%;
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+    }
+    .shop-text p {
+        margin: 1em 0em 0em 0em;
+    }
+    .buy-btn{
+        font-size: 1em;
+        align-self: center ;
+        margin-top: 1em;
+    }
 }

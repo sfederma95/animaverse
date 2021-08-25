@@ -2,19 +2,28 @@
 
 exports[`matches snapshot 1`] = `
 <DocumentFragment>
-  <div>
+  <div
+    id="whole-form"
+  >
     <img
       alt="adopt-pet"
+      class="chosen-pet"
       src="rat.png"
     />
-    <form>
-      <div>
+    <form
+      id="form-el"
+    >
+      <div
+        class="inputs"
+      >
         <label
+          class="labels"
           for="pet_name"
         >
           Pet Name:
         </label>
         <input
+          class="input-el good-input"
           id="pet_name"
           name="pet_name"
           required=""
@@ -22,10 +31,14 @@ exports[`matches snapshot 1`] = `
           value=""
         />
       </div>
-      <button>
-        Create!
+      <button
+        class="adopt-btns"
+      >
+        Create
       </button>
-      <button>
+      <button
+        class="adopt-btns"
+      >
         Back
       </button>
     </form>

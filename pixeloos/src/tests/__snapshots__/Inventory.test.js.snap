@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    id="inventory"
+  >
+    <div
+      class="inv-item"
+      id="1"
+    >
+      <img
+        alt="Hamburger"
+        class="item-img"
+        src="hamburger.png"
+        tabindex="0"
+      />
+    </div>
+    <div
+      class="inv-item"
+      id="8"
+    >
+      <img
+        alt="Hotdog"
+        class="item-img"
+        src="hotdog.png"
+        tabindex="0"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;

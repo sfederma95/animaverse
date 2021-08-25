@@ -1,6 +1,9 @@
 import axios from 'axios';
 
-import {BASE_URL, DEV_APPROVAL_KEY} from './config'
+require('dotenv').config();
+
+const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:3001';
+const DEV_APPROVAL_KEY = process.env.REACT_APP_DEV_APPROVAL_KEY || 'thissupersecretkeyfornow';
 
 class AnimalsApi {
     static token;
@@ -25,6 +28,14 @@ class AnimalsApi {
                     Authorization: `Bearer ${AnimalsApi.token}`
                 }
             })
+            const itemMap = {};
+            for (let i of res.data.user.inventory) {
+                if (!itemMap[i.item_id]) {
+                  itemMap[i.item_id]=1;
+                }
+                else itemMap[i.item_id] ++; 
+            }
+            res.data.user['items']=itemMap;
             return res.data.user;
         } catch(err){
             let msg = err.response.data.error.message;

@@ -5,7 +5,7 @@ import './newpet.css'
 
 function AdoptPage(){
     const [petSrc, setPetSrc] = useState(null)
-    const [petNum, setPetNum] = useState(0)
+    const [petNum] = useState(0)
     function selectPetType(e){
         const getSrc = window.jQuery(e.target).parent().children('img').attr('src')
         setPetSrc(getSrc)

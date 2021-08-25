@@ -17,7 +17,6 @@ function App() {
           let {id} = jwt.decode(token);
           AnimalsApi.token = token;
           let currentUser = await AnimalsApi.getUser(id);
-          console.log(currentUser)
           setCurrentUser(currentUser);
         } catch(err){
           setCurrentUser(null)

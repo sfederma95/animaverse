@@ -1,4 +1,5 @@
 # Getting Started
+* Try it out at: https://pixeloos.herokuapp.com/
 * Clone the repo to your documents folder with the **git clone** command through the terminal
 * Have node installed on your machine
 * cd to the pixeloos-api folder and **npm install** to get the relevant dependencies, repeat this step for the pixeloos main folder
