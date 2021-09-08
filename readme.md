@@ -5,15 +5,15 @@
 * cd to the pixeloos-api folder and **npm install** to get the relevant dependencies, repeat this step for the pixeloos main folder
 * Download postgreSQL from https://www.postgresql.org/
 * From your terminal create your db with: **createdb dbname** for the API as well as the testing database
-* Seed your database from the animals-schema.sql file
+* Seed your databases from the animals-schema.sql file
 * Run tests from either folder with **npm test** command
 * ## Set up the following env variables with **export var=value**:
   * DATABASE_URL=yourdb
   * SECRET_KEY=yoursecretkey 
-  * DEV_APPROVAL_KEY=yoursecretkey 
+  * REACT_APP_DEV_APPROVAL_KEY=yoursecretkey 
   * PORT=3001 or port of your choice
   * NODE_ENV=development
-  * BASE_URL = localhost:3001 or port of your choice for the API
+  * REACT_APP_BASE_URL = localhost:3001 or port of your choice for the API
 * You can start the API with command **nodemon server.js** and the React front-end app with **npm start** hosted on localhost:3000
 * **note that the backend API is hosted on port 3001**
 * ## Key features:
