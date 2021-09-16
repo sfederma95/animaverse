@@ -6,6 +6,7 @@ import useLocalStorage from './hooks/useLocalStorage';
 import AnimalsApi from './api';
 import UserContext from './users/UserContext'
 import jwt from 'jsonwebtoken'
+import './App.css'
 
 function App() {
   const [currentUser,setCurrentUser]=useState(null);
