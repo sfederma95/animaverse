@@ -31,7 +31,7 @@ function Inventory(){
     })
     return(
         <div id='inventory'>
-            {inventoryItems}
+            {inventoryItems.length ? inventoryItems : <div className='empty-bag'>So Empty :(</div>}
         </div>
     )
 }
