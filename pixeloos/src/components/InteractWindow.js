@@ -74,7 +74,7 @@ function InteractWindow({action, pet_id}){
     })
     return(
         <div id='interact-items'>
-            {inventoryItems}
+            {inventoryItems.length ? inventoryItems : <div className='empty-bag'>So Empty :(</div>}
         </div>
 
     )
