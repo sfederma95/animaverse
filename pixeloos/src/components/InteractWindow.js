@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 import AnimalsApi from '../api'
 import jwt from 'jsonwebtoken'
 
-function InteractWindow({action, pet_id}){
+function InteractWindow({action, pet_id, petInfo, interaction}){
     const {currentUser, setCurrentUser} = useContext(UserContext);
     const token = AnimalsApi.token;
     useEffect(function(){
@@ -26,16 +26,13 @@ function InteractWindow({action, pet_id}){
         getCurrentUser();
       }
       async function handleSelect(iid){
-        let msg;
         let res1;
         let res2;
         let initialErr = false;
         if (action==='Feed') {
-            msg=`Thanks for feeding your pet`
             res1 = await AnimalsApi.feedPet({ item_id: iid, amt: items[iid-1].amount }, currentUser.usr_id, pet_id);
             if (res1.errors) initialErr = true;
         } else {
-            msg=`Thanks for playing with your pet`
             res2 = await AnimalsApi.playPet({ item_id: iid, amt: items[iid-1].amount }, currentUser.usr_id, pet_id);
             if (res2.errors) initialErr=true;
         }
@@ -44,7 +41,9 @@ function InteractWindow({action, pet_id}){
         if(initialErr !== false || res3.errors || res4.errors){
             alert(`Looks like you've used up that item, try a different one`)
         }
-        else alert(msg);
+        window.$('.loved').css('display','initial')
+        interaction(false);
+        petInfo(true);
         loadUserInfo();
     }
         window.$(".item-img").draggable({
@@ -59,7 +58,7 @@ function InteractWindow({action, pet_id}){
               handleSelect(+iid)
             }
           }); 
-    },[action, currentUser.usr_id, pet_id, token, setCurrentUser])
+    },[action, currentUser.usr_id, pet_id, token, setCurrentUser, petInfo, interaction])
     const filteredInv = currentUser.inventory.filter(i=>{
         let currItem = items[i.item_id-1]
         return currItem.action === action
