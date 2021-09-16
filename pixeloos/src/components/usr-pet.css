@@ -11,7 +11,7 @@
 }
 
 #pets-collection :nth-child(2) :nth-child(1) {
-    animation-delay: 1.5s;
+    animation-delay: 0.3s;
   }
 
 @keyframes wiggle {

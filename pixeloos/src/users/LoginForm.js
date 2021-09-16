@@ -37,7 +37,7 @@ function LoginForm({login}){
                 <div className='inputs'>
                     <img alt='sleep cat' className='sleep-cat' src={sleepCat}/>
                     <label className = 'labels' htmlFor='password'>Password</label>
-                    <input onFocus = {showCat} onBlur = {hideCat} className='input-el good-input' id='password' name='password' value={formData.password} onChange={handleChange} type='text' required/>
+                    <input onFocus = {showCat} onBlur = {hideCat} className='input-el good-input' id='password' name='password' value={formData.password} onChange={handleChange} type='password' required/>
                 </div>
                 {formErrors.length ? <Alert messages={formErrors}/> : null}
                 <button type='submit' id='login-btn'>Login</button>
