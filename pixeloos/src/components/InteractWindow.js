@@ -41,7 +41,7 @@ function InteractWindow({action, pet_id, petInfo, interaction}){
         if(initialErr !== false || res3.errors || res4.errors){
             alert(`Looks like you've used up that item, try a different one`)
         }
-        window.$('.loved').css('display','initial')
+        window.$(`#${pet_id}`).find('.loved').css('display','initial')
         interaction(false);
         petInfo(true);
         loadUserInfo();
