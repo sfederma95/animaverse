@@ -27,6 +27,7 @@ function UserPet({userId, src,name,type,level, happiness, hunger, exp, status, l
     return(
         <div tabIndex="0" onBlur={hideInfo} id={`${petId}`} className='each-pet'>
             <img onClick={displayInfo} alt={type} className='pet-img' src={src}/>
+            <span className='loved'>♥️</span>
             {petInfo ? <div className='pet-text'>
                 <p>Name: {name}</p>
                 <p>Level: {level}</p>
@@ -41,7 +42,7 @@ function UserPet({userId, src,name,type,level, happiness, hunger, exp, status, l
                     <button onClick={displayInteract} className='btns'>Play</button>
                 </div>
             </div> : null}
-            {petInteract === true ? <InteractWindow action={action} pet_id={petId}/> : null}
+            {petInteract === true ? <InteractWindow action={action} pet_id={petId} petInfo={setPetInfo} interaction = {setPetInteract}/> : null}
         </div>
     )
 }

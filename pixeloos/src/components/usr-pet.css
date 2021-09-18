@@ -42,7 +42,7 @@
     background-color: rgba(229, 245, 229, 0.9);
     position: absolute;
     display: inline-block;
-    top: 20%;
+    top: 15%;
     right: -5%;
     margin-top: 2em;
 }
@@ -68,6 +68,22 @@
     display: flex;
     justify-content: center;
     margin-bottom: 1em;
+}
+
+.loved {
+    display: none;
+    color: red;
+    font-size: 6em;
+    position: relative;
+    top: -2em;
+    left: -1.5em;
+    animation: heart 2s ease infinite;
+}
+
+@keyframes heart{
+    0% {opacity: 0%; font-size: 6em;}
+    50% {opacity: 100%; font-size: 8em;}
+    100% {opacity: 0%; font-size: 6em;}
 }
 
 @media only screen and (max-width: 800px) {

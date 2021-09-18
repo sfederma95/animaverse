@@ -49,9 +49,10 @@ function UserPage(){
     }
     const hideMenu = () => {
       setInv(false);
-      setOverlay(false)
-      setPets(false)
-      setShop(false)
+      setOverlay(false);
+      setPets(false);
+      setShop(false);
+      window.$('.loved').css('display','none');
     }
     const showInventory = () => {
       setInv(true);
