@@ -2,19 +2,26 @@ import React, {useState} from 'react';
 
 function ShopItem({src,name,id,description,amount, price, getItemId, userGold, buyBtn}){
     const [itemInfo, setItemInfo] = useState(false)
-    const [btnText, setBtnText] = useState('Buy')
+    const [btnText, setBtnText] = useState('Buy');
+    const [btnColor, setBtnColor] = useState('rgba(196, 240, 196, 0.9)');
     const displayInfo = () => {
         setItemInfo(true)
     }
     const hideInfo = (e) => {
         if (!e.currentTarget.contains(e.relatedTarget)){
-            setItemInfo(false)
+            setItemInfo(false);
         }
     }
     const updateItem = (e) => {
         getItemId(e);
-        setBtnText('Bought')
+        setBtnText('Bought');
+        setBtnColor('lavender');
     }
+
+    const btnStyle = {
+        backgroundColor: btnColor,
+    };
+
     return(
         <div tabIndex='0' onBlur={hideInfo} className='shop-item' id={id}>
             <img onClick={displayInfo}  alt={name} className='item-img' src={src}/>
@@ -24,7 +31,7 @@ function ShopItem({src,name,id,description,amount, price, getItemId, userGold, b
                 <p>Price: {price} Gold</p>
                 <p>Description: {description}</p>
                 <p>Increase: {amount} points</p>
-                <button className='buy-btn' onClick={updateItem}>{btnText}</button>
+                <button style={btnStyle} className='buy-btn' onClick={updateItem}>{btnText}</button>
             </div> : null}
         </div>
     )
