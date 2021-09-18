@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import InteractWindow from './InteractWindow';
+import convertDate from './datetime';
 
 function UserPet({userId, src,name,type,level, happiness, hunger, exp, status, last_fed, last_play, petId}){
     const [action,setAction] = useState(null)
@@ -34,8 +35,8 @@ function UserPet({userId, src,name,type,level, happiness, hunger, exp, status, l
                 <p>Happiness: {happiness}</p>
                 <p>Fullness: {hunger}</p>
                 <p>Status: {status}</p>
-                <p>Last Fed: {last_fed}</p>
-                <p>Last Played: {last_play}</p>
+                <p>Last Fed: {convertDate(last_fed)}</p>
+                <p>Last Played: {convertDate(last_play)}</p>
                 <div className='btn-group'>
                     <button onClick={displayInteract} className='btns'>Feed</button>
                     <button onClick={displayInteract} className='btns'>Play</button>

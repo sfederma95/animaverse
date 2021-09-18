@@ -37,7 +37,7 @@ function UserPage(){
       },[setCurrentUser, token])
     let userPets; 
     currentUser.pets ? userPets = currentUser.pets.map(p=>{
-        return <UserPet petId={p.id} userId= {currentUser.usr_id} key={p.id} src={p.pet_img} name={p.pet_name} level={p.pet_lvl} happiness={p.happiness} hunger={p.hunger} exp={p.lvl_exp} status={p.pet_status} last_fed={p.last_fed === null ? 'N/A' : p.last_fed} last_play={p.last_play === null ? 'N/A' : p.last_fed} />
+        return <UserPet petId={p.id} userId= {currentUser.usr_id} key={p.id} src={p.pet_img} name={p.pet_name} level={p.pet_lvl} happiness={p.happiness} hunger={p.hunger} exp={p.lvl_exp} status={p.pet_status} last_fed={p.last_fed === null ? 'N/A' : p.last_fed} last_play={p.last_play === null ? 'N/A' : p.last_play} />
     }) : userPets = null;
     let letsAdopt;
     if (currentUser.pets){
