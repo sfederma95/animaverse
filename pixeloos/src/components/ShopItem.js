@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-function ShopItem({src,name,id,description,amount, price, getItemId, userGold, buyBtn}){
+function ShopItem({src,name,id,description,amount, price, getItemId, userGold}){
     const [itemInfo, setItemInfo] = useState(false)
     const [btnText, setBtnText] = useState('Buy');
     const [btnColor, setBtnColor] = useState('rgba(196, 240, 196, 0.9)');
@@ -13,9 +13,15 @@ function ShopItem({src,name,id,description,amount, price, getItemId, userGold, b
         }
     }
     const updateItem = (e) => {
-        getItemId(e);
-        setBtnText('Bought');
-        setBtnColor('lavender');
+        if (price > userGold){
+            setBtnColor('red');
+            setBtnText(`${price}G`);
+        }
+        else {
+            getItemId(e);
+            setBtnText('Bought');
+            setBtnColor('lavender');
+        }
     }
 
     const btnStyle = {

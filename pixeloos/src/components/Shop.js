@@ -8,7 +8,7 @@ import jwt from 'jsonwebtoken'
 
 function Shop(){
     const {currentUser, setCurrentUser} = useContext(UserContext)
-    const token = AnimalsApi.token
+    const token = AnimalsApi.token;
     function loadUserInfo(){
         async function getCurrentUser(){
           if(token) {
@@ -25,18 +25,13 @@ function Shop(){
         getCurrentUser();
       }
     async function getItemId(e) {
-        if (currentUser.inventory.length <= 21){
-            let itemId = e.target.parentNode.parentNode.getAttribute('id');
-            let res = await AnimalsApi.buyItem({ item_id: +itemId, usr_id: currentUser.usr_id }, currentUser.usr_id, items[itemId-1].price);
-            if (res.errors) {
-                alert('You do not have enough money for that item')
-            } else{
-                loadUserInfo();
-            }
-        }
-        else {
-            alert('Looks like your inventory is full, try using up some items')
-        }
+      let itemId = e.target.parentNode.parentNode.getAttribute('id');
+      let res = await AnimalsApi.buyItem({ item_id: +itemId, usr_id: currentUser.usr_id }, currentUser.usr_id, items[itemId-1].price);
+      if (res.errors) {
+        alert("Looks like there was a problem, try again");
+      } else{
+        loadUserInfo();
+      }
     }
     const shopItems = items.map(i=>{
         return <ShopItem userGold = {currentUser.gold_amt} getItemId = {getItemId} key={i.id} id={i.id} price={i.price} src={i.img} action={i.action} amount={i.amount} name={i.name} description={i.description} />
