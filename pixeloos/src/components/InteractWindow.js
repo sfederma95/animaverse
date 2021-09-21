@@ -73,8 +73,15 @@ function InteractWindow({action, pet_id, petInfo, interaction}){
             </div>
         )
     })
+
+    const back = () =>{
+      interaction(false);
+      petInfo(true);
+    }
+
     return(
         <div id='interact-items'>
+            <span onClick={back} className='back-btn'>⏎</span>
             {inventoryItems.length ? inventoryItems : <div className='empty-bag'>So Empty :(</div>}
         </div>
 

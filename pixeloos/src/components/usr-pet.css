@@ -109,3 +109,12 @@
         font-size: 1em;
     }
 }
+
+.back-btn {
+    position: absolute;
+    bottom: 10%;
+    left: -50vw;
+    font-size: 5em;
+    color: white;
+    cursor: grab;
+}

@@ -41,6 +41,7 @@ function UserPet({userId, src,name,type,level, happiness, hunger, exp, status, l
                 <div className='btn-group'>
                     <button onClick={displayInteract} className='btns'>Feed</button>
                     <button onClick={displayInteract} className='btns'>Play</button>
+                    <button onClick={hideInfo} className='btns'>Back</button>
                 </div>
             </div> : null}
             {petInteract === true ? <InteractWindow action={action} pet_id={petId} petInfo={setPetInfo} interaction = {setPetInteract}/> : null}
