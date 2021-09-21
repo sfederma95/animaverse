@@ -39,7 +39,7 @@ function InteractWindow({action, pet_id, petInfo, interaction}){
         let res3 = await AnimalsApi.removeItem({ usr_id: currentUser.usr_id, item_id: iid })
         let res4 = await AnimalsApi.addExp({amt:10},pet_id, currentUser.usr_id)
         if(initialErr !== false || res3.errors || res4.errors){
-            alert(`Looks like you've used up that item, try a different one`)
+            alert(`Looks like there was a problem, please try again`)
         }
         window.$(`#${pet_id}`).find('.loved').css('display','initial')
         interaction(false);
@@ -47,27 +47,29 @@ function InteractWindow({action, pet_id, petInfo, interaction}){
         loadUserInfo();
     }
         window.$(".item-img").draggable({
-            revert: 'invalid',
-            addClasses: false
+            addClasses: false,
+            drag: function(e){
+              window.$(e.target).siblings('.counters').css('opacity','0%');
+            }
           });
           window.$(".pet-img").droppable({
             accept: ".item-img",
             addClasses: false,
-            drop: function(e,ui) {     
+            drop: function(e,ui) {   
               let iid = window.$(ui.draggable[0]).parent().attr('id');
               handleSelect(+iid)
             }
           }); 
     },[action, currentUser.usr_id, pet_id, token, setCurrentUser, petInfo, interaction])
-    const filteredInv = currentUser.inventory.filter(i=>{
-        let currItem = items[i.item_id-1]
+    const filteredInv = Object.keys(currentUser.items).filter(i=>{
+        let currItem = items[i-1]
         return currItem.action === action
     })
     const inventoryItems = filteredInv.map(i=>{
-        let currItem = items[i.item_id-1]
+        let currItem = items[i-1]
         return (
             <div key={uuidv4()}>
-                <Item src={currItem.img} name={currItem.name} description={currItem.description} id={currItem.id} action={currItem.action} amount={currItem.amount} />
+                <Item src={currItem.img} name={currItem.name} description={currItem.description} id={currItem.id} action={currItem.action} amount={currItem.amount} x={currentUser.items[i]} />
             </div>
         )
     })
