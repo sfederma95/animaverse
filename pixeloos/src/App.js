@@ -53,7 +53,6 @@ function App() {
     setCurrentUser(null);
     setToken(null);
   }
-
   return (
     <BrowserRouter>
       <UserContext.Provider value={{currentUser,setCurrentUser}}>
