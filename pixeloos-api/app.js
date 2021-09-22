@@ -11,10 +11,13 @@ const app = express();
 app.use(cors())
 app.use(express.json());
 
+app.use(express.static(path.resolve(__dirname, '../pixeloos/build')));
+
 app.use('/users',userRoutes)
 app.use('/pets',petRoutes)
 app.use('/gold',goldRoutes)
 app.use('/inventories',inventoryRoutes)
+
 
 app.use(function(err,req,res,next){
     const msg = err.msg
