@@ -1,1 +1,1 @@
-web: cd pixeloos-api && npm start
+web: npm start

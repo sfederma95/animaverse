@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "cd .. && cd pixeloos && npm install && npm run build",
-    "start": "node server.js"
+    "build": "cd pixeloos && npm install && npm run build",
+    "start": "cd pixeloos-api && node server.js"
   },
   "keywords": [],
   "author": "",
