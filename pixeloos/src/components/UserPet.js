@@ -28,7 +28,7 @@ function UserPet({userId, src,name,type,level, happiness, hunger, exp, status, l
     return(
         <div tabIndex="0" onBlur={hideInfo} id={`${petId}`} className='each-pet'>
             <img onClick={displayInfo} alt={type} className='pet-img' src={src}/>
-            <span className='loved'>♥️</span>
+            <span className='loved'>&#128150;</span>
             {petInfo ? <div className='pet-text'>
                 <p>Name: {name}</p>
                 <p>Level: {level}</p>

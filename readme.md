@@ -10,12 +10,10 @@
 * ## Set up the following env variables with **export var=value**:
   * DATABASE_URL=yourdb
   * SECRET_KEY=yoursecretkey 
-  * REACT_APP_DEV_APPROVAL_KEY=yoursecretkey 
   * PORT=3001 or port of your choice
   * NODE_ENV=development
-  * REACT_APP_BASE_URL = localhost:3001 or port of your choice for the API
-* You can start the API with command **nodemon server.js** and the React front-end app with **npm start** hosted on localhost:3000
-* **note that the backend API is hosted on port 3001**
+* You can start the API with command **npm start** on the main folder and the React front-end app with **npm start** on the     sub-folder Pixeloos and open up localhost:3000
+* **note that the backend API is hosted on port 3001 by default**
 * ## Key features:
 * ### Name your own Pixeloo with currently 6 Pixeloos to choose from:
   * Pixeloos gain EXP and level up as you interact with them. What do the levels mean? Nothing right now, but features related to leveling will be added at a later date. Pixeloos also feel lonely when neglected for too long -- check on them from time to time. You can view their status anytime from your portal. 
