@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const {SECRET_KEY, DEV_APPROVAL_KEY} = require('../config');
+const {SECRET_KEY} = require('../config');
 const ExpressError = require('../expressError');
 
 const authenticateJWT = (req, res, next) => {
@@ -28,21 +28,9 @@ const ensureCorrectUser = (req,res,next) => {
     }
 }
 
-const ensureDevAuth = (req,res,next)=>{
-    try {
-        const devAuth = req.body.devKey;
-        if (devAuth !== DEV_APPROVAL_KEY){
-            throw new ExpressError("This request is not approved by the developer", 500)
-        }
-        return next();
-    } catch(err){
-        return next(err)
-    }
-}
 
 
 module.exports = {
     authenticateJWT,
-    ensureCorrectUser,
-    ensureDevAuth,
+    ensureCorrectUser
 }

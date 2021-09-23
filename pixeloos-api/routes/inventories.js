@@ -1,11 +1,11 @@
 const express = require('express');
 const auth = require('../helpers/auth');
-const {ensureCorrectUser,authenticateJWT, ensureDevAuth} = require('../helpers/auth')
+const {ensureCorrectUser,authenticateJWT} = require('../helpers/auth')
 const Inventory = require('../models/inventory');
 const User = require('../models/user')
 const router = express.Router();
 
-router.post('/add', ensureDevAuth, authenticateJWT, ensureCorrectUser,async function(req,res,next){
+router.post('/add', authenticateJWT, ensureCorrectUser,async function(req,res,next){
     try {
         await Inventory.addToInv(req.body.usr_id, req.body.item_id);
         const newInv = await User.get(req.body.usr_id);

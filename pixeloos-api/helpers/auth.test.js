@@ -2,9 +2,8 @@ const jwt = require('jsonwebtoken');
 const {
     authenticateJWT,
     ensureCorrectUser,
-    ensureDevAuth,
 } = require('./auth')
-const {SECRET_KEY, DEV_APPROVAL_KEY} = require('../config');
+const {SECRET_KEY} = require('../config');
 
 test ('authenticateJWT works through with authorization header', function(){
     const testJWT = jwt.sign({username:'testuser',id:1},SECRET_KEY);
@@ -58,23 +57,4 @@ test ('mismatching id can not access', function(){
         expect(err).toBeTruthy()
     }
     ensureCorrectUser(req,res,next)
-})
-
-test ('ensuredevauth works with matching dev key', function(){
-    const req = {body:{devKey: DEV_APPROVAL_KEY}};
-    const res = {locals: {}};
-    const next = function (err){
-        expect(err).toBeFalsy()
-    }
-    const authTest = ensureDevAuth(req,res,next)
-    expect(authTest).toBeUndefined()
-})
-
-test ('ensuredevauth throws error for wrong key', function(){
-    const req = {body:{devKey: 'wrong_key'}};
-    const res = {locals: {}};
-    const next = function (err){
-        expect(err).toBeTruthy()
-    }
-    ensureDevAuth(req,res,next)
 })

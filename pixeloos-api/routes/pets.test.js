@@ -2,7 +2,6 @@ process.env.NODE_ENV = 'test';
 const request = require('supertest');
 const app = require('../app');
 const {commonBeforeAll, commonBeforeEach, commonAfterAll, commonAfterEach, userIds, tokens, petIds} = require('./_testCommon')
-const {DEV_APPROVAL_KEY} = require('../config')
 
 beforeAll(commonBeforeAll);
 beforeEach(commonBeforeEach);
@@ -75,8 +74,8 @@ test('get pet returns 401 for anon user', async function(){
     expect(res.statusCode).toEqual(401);
 })
 
-test('add exp route works for correct user, and provided dev approval key', async function(){
-    const res = await request(app).put(`/pets/${userIds[0]}/${petIds[0]}/exp`).send({devKey:DEV_APPROVAL_KEY,amt:50}).set('authorization',`Bearer ${tokens[0]}`)
+test('add exp route works for correct user', async function(){
+    const res = await request(app).put(`/pets/${userIds[0]}/${petIds[0]}/exp`).send({amt:50}).set('authorization',`Bearer ${tokens[0]}`)
     expect(res.body).toEqual({
         pet: {
           id: petIds[0],
@@ -95,13 +94,8 @@ test('add exp route works for correct user, and provided dev approval key', asyn
 })
 
 test('add exp returns 401 for incorrect user', async function(){
-    const res = await request(app).put(`/pets/${userIds[0]}/${petIds[0]}/exp`).send({devKey:DEV_APPROVAL_KEY,amt:50}).set('authorization',`Bearer ${tokens[1]}`)
-    expect(res.statusCode).toEqual(401);
-})
-
-test('add exp returns 500 for no dev key provided', async function(){
     const res = await request(app).put(`/pets/${userIds[0]}/${petIds[0]}/exp`).send({amt:50}).set('authorization',`Bearer ${tokens[1]}`)
-    expect(res.statusCode).toEqual(500);
+    expect(res.statusCode).toEqual(401);
 })
 
 test('feed pet works for valid user and valid item id in inventory', async function(){

@@ -1,10 +1,5 @@
 import axios from 'axios';
 
-require('dotenv').config();
-
-// const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:3001';
-const DEV_APPROVAL_KEY = process.env.REACT_APP_DEV_APPROVAL_KEY || 'thissupersecretkeyfornow';
-
 class AnimalsApi {
     static token;
     static async login(data){
@@ -43,7 +38,7 @@ class AnimalsApi {
         }
     }
     static async addGold(usr_id, gold){
-        let data = {usr_id:usr_id, goldToAdd: gold, devKey: DEV_APPROVAL_KEY}
+        let data = {usr_id:usr_id, goldToAdd: gold}
         let res = await axios.put(`/gold/add`,data,{
             headers: {
                 Authorization: `Bearer ${AnimalsApi.token}`
@@ -66,7 +61,6 @@ class AnimalsApi {
         return res.data.user
     }
     static async buyItem(data, usr_id, goldDec){
-        data.devKey = DEV_APPROVAL_KEY;
         let res = await axios.post(`/inventories/add`,data,{
             headers: {
                 Authorization: `Bearer ${AnimalsApi.token}`
@@ -119,7 +113,6 @@ class AnimalsApi {
     }
 
     static async addExp(data, pet_id, usr_id){
-        data.devKey = DEV_APPROVAL_KEY;
         let res = await axios.put(`/pets/${usr_id}/${pet_id}/exp`,data,{
             headers: {
                 Authorization: `Bearer ${AnimalsApi.token}`

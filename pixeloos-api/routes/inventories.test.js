@@ -2,15 +2,14 @@ process.env.NODE_ENV = 'test';
 const request = require('supertest');
 const app = require('../app');
 const {commonBeforeAll, commonBeforeEach, commonAfterAll, commonAfterEach, userIds, tokens} = require('./_testCommon')
-const {DEV_APPROVAL_KEY} = require('../config')
 
 beforeAll(commonBeforeAll);
 beforeEach(commonBeforeEach);
 afterEach(commonAfterEach);
 afterAll(commonAfterAll);
 
-test('add to inventory works for correct user with dev key provided', async function(){
-    const res = await request(app).post(`/inventories/add`).send({usr_id:userIds[0],item_id:2,devKey:DEV_APPROVAL_KEY}).set('authorization',`Bearer ${tokens[0]}`)
+test('add to inventory works for correct user', async function(){
+    const res = await request(app).post(`/inventories/add`).send({usr_id:userIds[0],item_id:2}).set('authorization',`Bearer ${tokens[0]}`)
     expect(res.body).toEqual({
         newInv: {
           usr_id: userIds[0],
@@ -25,13 +24,8 @@ test('add to inventory works for correct user with dev key provided', async func
 })
 
 test('add to inventory returns 401 for incorrect user', async function(){
-    const res = await request(app).post(`/inventories/add`).send({usr_id:userIds[0],item_id:2,devKey:DEV_APPROVAL_KEY}).set('authorization',`Bearer ${tokens[1]}`)
+    const res = await request(app).post(`/inventories/add`).send({usr_id:userIds[0],item_id:2}).set('authorization',`Bearer ${tokens[1]}`)
     expect(res.statusCode).toEqual(401);
-})
-
-test('add to inventory returns 500 for missing dev key', async function(){
-    const res = await request(app).post(`/inventories/add`).send({usr_id:userIds[0],item_id:2}).set('authorization',`Bearer ${tokens[0]}`)
-    expect(res.statusCode).toEqual(500);
 })
 
 test('remove from inventory works for correct user', async function(){

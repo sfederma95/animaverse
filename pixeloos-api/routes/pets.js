@@ -2,7 +2,7 @@ const express = require('express');
 const jsonschema = require('jsonschema')
 const newPetSchema = require('../schema/newPet.json')
 const ExpressError = require('../expressError');
-const {ensureCorrectUser,authenticateJWT, ensureDevAuth} = require('../helpers/auth')
+const {ensureCorrectUser,authenticateJWT} = require('../helpers/auth')
 const Pet = require('../models/pet');
 const router = express.Router();
 
@@ -25,7 +25,7 @@ router.get('/:id/:pet_id', authenticateJWT, ensureCorrectUser,async function(req
     }
 })
 
-router.put('/:id/:pet_id/exp', ensureDevAuth,authenticateJWT, ensureCorrectUser,async function(req,res,next){
+router.put('/:id/:pet_id/exp', authenticateJWT, ensureCorrectUser,async function(req,res,next){
     try {
         const pet = await Pet.addExp(req.body,req.params.pet_id)
         return res.json({pet})

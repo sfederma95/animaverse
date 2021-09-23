@@ -1,7 +1,6 @@
 require('dotenv').config();
 
 const SECRET_KEY = process.env.SECRET_KEY || "my-key";
-const DEV_APPROVAL_KEY = process.env.DEV_APPROVAL_KEY || 'thissupersecretkeyfornow'
 const PORT = +process.env.PORT || 3001;
 function getDatabaseUri(){
     return(process.env.NODE_ENV==='test') ? 'anima-backend-test' : process.env.DATABASE_URL || 'animaverse'

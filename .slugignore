@@ -24,3 +24,5 @@ docker-compose.yml
 /pixeloos-api/models/_testCommon.js
 
 /pixeloos/src/tests
+
+.gitignore
