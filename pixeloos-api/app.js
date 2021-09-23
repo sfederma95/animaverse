@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors')
+const path = require('path');
 const userRoutes = require('./routes/users');
 const petRoutes = require('./routes/pets');
 const goldRoutes = require('./routes/gold');
