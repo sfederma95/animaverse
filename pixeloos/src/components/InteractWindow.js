@@ -1,10 +1,11 @@
 import React, {useContext, useEffect} from 'react';
-import UserContext from '../users/UserContext'
+import UserContext from '../users/UserContext';
 import Item from './Item';
-import items from '../items/items'
+import items from '../items/items';
 import { v4 as uuidv4 } from 'uuid';
-import AnimalsApi from '../api'
-import jwt from 'jsonwebtoken'
+import AnimalsApi from '../api';
+import jwt from 'jsonwebtoken';
+import emoji from 'react-easy-emoji';
 
 function InteractWindow({action, pet_id, petInfo, interaction}){
     const {currentUser, setCurrentUser} = useContext(UserContext);
@@ -81,7 +82,7 @@ function InteractWindow({action, pet_id, petInfo, interaction}){
 
     return(
         <div id='interact-items'>
-            <span onClick={back} role="img" aria-label="back" className='back-btn'>⏎</span>
+            <span onClick={back} role="img" aria-label="back" className='back-btn'>{emoji('⏎')}</span>
             {inventoryItems.length ? inventoryItems : <div className='empty-bag'>So Empty :(</div>}
         </div>
 
