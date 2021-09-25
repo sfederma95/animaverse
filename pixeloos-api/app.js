@@ -26,6 +26,11 @@ app.use((req, res, next) => {
     });
 });
 
+app.use((req, res, next) => {
+    res.sendFile(path.join(__dirname, "../pixeloos/build"));
+    next();
+});
+
 app.use(function(err,req,res,next){
     const msg = err.msg
     const status = err.status
@@ -33,10 +38,6 @@ app.use(function(err,req,res,next){
         error: {msg,status}
     })
 })
-
-app.use((req, res, next) => {
-    res.sendFile(path.join(__dirname, "..", "build", "index.html"));
-});
 
 cron.schedule('0 */4 * * *', async () => {
     const petsArr = await Pet.getAll()
