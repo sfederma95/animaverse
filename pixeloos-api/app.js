@@ -34,6 +34,10 @@ app.use(function(err,req,res,next){
     })
 })
 
+app.use((req, res, next) => {
+    res.sendFile(path.join(__dirname, "..", "build", "index.html"));
+});
+
 cron.schedule('0 */4 * * *', async () => {
     const petsArr = await Pet.getAll()
     petsArr.map(async (p)=>{
