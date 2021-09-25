@@ -35,7 +35,7 @@ function Routes({login, register}){
                 <Private exact path='/:id/adopt'>
                     <AdoptPage />
                 </Private>
-                <Private exact path='/users/:id'>
+                <Private exact path='/user/:id'>
                     <UserPage  />
                 </Private>
                 <Route component={NotFound}/>
