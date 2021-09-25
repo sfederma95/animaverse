@@ -1,0 +1,28 @@
+
+#not-found {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10em;
+}
+
+#not-found h1{
+    font-family: 'Courier New', Courier, monospace;
+    text-transform: capitalize;
+    font-size: 3em;
+    background: linear-gradient(to right, black, white, black);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: header_colors 11s ease-in-out infinite;
+    background-size: 400% 100%;
+    width: 45%;
+    text-align: center;
+}
+
+#not-found img {
+    margin-top: 5em;
+    height: 10%;
+    width: 10%;
+    animation: bounce 2s linear infinite;
+}

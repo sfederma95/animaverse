@@ -8,6 +8,7 @@ import Private from './Private'
 import LoginForm from '../users/LoginForm'
 import Game from '../components/Game'
 import InteractWindow from '../components/InteractWindow'
+import NotFound from './404';
 
 function Routes({login, register}){
     return(
@@ -37,6 +38,7 @@ function Routes({login, register}){
                 <Private exact path='/users/:id'>
                     <UserPage  />
                 </Private>
+                <Route component={NotFound}/>
                 <Redirect to='/' />
             </Switch>
         </div>
