@@ -20,7 +20,7 @@ app.use('/gold',goldRoutes)
 app.use('/inventories',inventoryRoutes)
 
 app.use((req, res, next) => {
-    res.send(path.resolve(__dirname, '../pixeloos/build'));
+    res.redirect('/');
     next({
         status: 404,
         msg: 'Not Found',
