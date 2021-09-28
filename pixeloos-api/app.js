@@ -20,7 +20,7 @@ app.use('/gold',goldRoutes)
 app.use('/inventories',inventoryRoutes)
 
 app.use((req, res, next) => {
-    res.send('Whoops, cannot find that');
+    res.send(path.join(__dirname, '../pixeloos/public', 'index.html'));
     next({
         status: 404,
         msg: 'Not Found',
