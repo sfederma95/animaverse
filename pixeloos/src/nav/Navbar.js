@@ -14,7 +14,7 @@ function Navbar({logout}){
     function loggedIn(){
         return(
                 <div className='links-div'>
-                    <NavLink onClick={homeBtnBack} className='nav-li' to={`/users/${currentUser.usr_id}`}>
+                    <NavLink onClick={homeBtnBack} className='nav-li' to={`/user/${currentUser.usr_id}`}>
                         Profile
                     </NavLink>
                     <NavLink onClick={homeBtnBack} className='nav-li' to={`/${currentUser.usr_id}/game`}>

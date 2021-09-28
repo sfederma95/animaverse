@@ -20,7 +20,7 @@ app.use('/gold',goldRoutes)
 app.use('/inventories',inventoryRoutes)
 
 app.use((req, res, next) => {
-    res.status(200).json('Hello');
+    res.send('Whoops, cannot find that');
     next({
         status: 404,
         msg: 'Not Found',
