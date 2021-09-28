@@ -1,5 +1,5 @@
 import React from 'react';
-import {Switch, Route, Redirect} from 'react-router-dom';
+import {Switch, Route} from 'react-router-dom';
 import Homepage from '../components/Homepage'
 import AdoptPage from '../components/AdoptPage'
 import UserPage from '../components/UserPage'
@@ -39,7 +39,6 @@ function Routes({login, register}){
                     <UserPage  />
                 </Private>
                 <Route component={NotFound}/>
-                <Redirect to='/' />
             </Switch>
         </div>
     )

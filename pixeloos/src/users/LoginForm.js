@@ -17,7 +17,7 @@ function LoginForm({login}){
         if (res.errors) {
             setFormErrors(res.errors)
         } else{
-            history.push(`/users/${res.user.usr_id}`)
+            history.push(`/user/${res.user.usr_id}`)
         }
     }
     function handleChange(e){
