@@ -72,18 +72,18 @@
 
 .loved {
     display: none;
-    color: red;
-    font-size: 6em;
     position: relative;
     top: -2em;
     left: -1.5em;
+    height: 1em;
+    width: 1em;
     animation: heart 2s ease infinite;
 }
 
 @keyframes heart{
-    0% {opacity: 0%; font-size: 6em;}
+    0% {opacity: 0%; font-size: 5em;}
     50% {opacity: 100%; font-size: 8em;}
-    100% {opacity: 0%; font-size: 6em;}
+    100% {opacity: 0%; font-size: 5em;}
 }
 
 @media only screen and (max-width: 800px) {

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import InteractWindow from './InteractWindow';
 import convertDate from './datetime';
-import emoji from 'react-easy-emoji';
+import heart from '../pets/heart.png';
 
 function UserPet({userId, src,name,type,level, happiness, hunger, exp, status, last_fed, last_play, petId}){
     const [action,setAction] = useState(null)
@@ -29,7 +29,7 @@ function UserPet({userId, src,name,type,level, happiness, hunger, exp, status, l
     return(
         <div tabIndex="0" onBlur={hideInfo} id={`${petId}`} className='each-pet'>
             <img onClick={displayInfo} alt={type} className='pet-img' src={src}/>
-            <span className='loved' role="img" aria-label="heart">{emoji('❤️')}</span>
+            <img className='loved' src={heart} alt='heart'/>
             {petInfo ? <div className='pet-text'>
                 <p>Name: {name}</p>
                 <p>Level: {level}</p>
